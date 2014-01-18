@@ -1,0 +1,9 @@
+set show-all-if-ambiguous On
+set completion-ignore-case on
+"\ep": history-search-backward
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\e[1;9D": backward-word
+"\e[1;9C": forward-word
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word

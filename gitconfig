@@ -1,0 +1,125 @@
+[user]
+	name = Berry Phillips
+	email = berryphillips@gmail.com
+    logallrefupdates=true
+
+[alias]
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    df = diff
+    lg = log -p
+    tagbydate = for-each-ref --sort=committerdate --format='%(refname:short)' refs/tags
+    tagbydate- = for-each-ref --sort=-committerdate --format='%(refname:short)' refs/tags
+
+    rev = rev-parse --short
+    id = rev-parse --short HEAD
+
+    # graphs
+    lo = log --oneline
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+
+    ls = ls-files
+
+    pu = !"git fetch origin -v; git fetch upstream -v; git merge upstream/master"
+
+    # PEEPCODE
+    co = checkout
+    # Log display from screencast, with train tracks.
+    l = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'
+    # Alternate log display from Scott Chacon
+    lol = log --pretty=oneline --abbrev-commit --graph --decorate
+    # Other useful aliases:
+    unstage = reset HEAD
+    staged = diff --cached
+    unstaged = diff
+    current-branch = !git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||'
+    # Usage: git track origin/feature-123-login-form
+    track = checkout -t
+
+[core]
+	excludesfile = /Users/berryp/.gitignore_global
+	pager = less -+$LESS -R
+
+[diff]
+  tool = sourcetree
+
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+
+[mergetool "sourcetree"]
+	cmd = /Users/berryp/Library/Application Support/SourceTree/SourceTree 1.8.0.3/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+
+[push]
+  # Only push branches that have been set up to track a remote branch.
+  default = current
+
+[alias]
+  co = checkout
+  # Log display from screencast, with train tracks.
+  l = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'
+  # Alternate log display from Scott Chacon
+  lol = log --pretty=oneline --abbrev-commit --graph --decorate
+  # Other useful aliases:
+  unstage = reset HEAD
+  staged = diff --cached
+  unstaged = diff
+  current-branch = !git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||'
+  # Usage: git track origin/feature-123-login-form
+  track = checkout -t
+	myhist = !git log --author=\"$(git config user.name)\" --format=%H |xargs git show --name-only --format=-------------%n%Cred%s%Creset%n%Cblue%h%Creset
+
+[apply]
+  whitespace = warn
+
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = auto
+	interactive = auto
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[help]
+  autocorrect = 1
+
+[status]
+  submodule = 1
+
+[push]
+  default = tracking
+
+[instaweb]
+    httpd = webrick
+    port = 1234
+[branch]
+	autosetuprebase = always
+	autosetupmerge = true
+[log]
+	decorate = short
+[pager]
+	status = false
+	show-branch = true
+[format]
+	numbered = auto
+[credential]
+	helper = osxkeychain

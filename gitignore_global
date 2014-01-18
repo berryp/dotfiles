@@ -1,0 +1,12 @@
+*~
+.DS_Store
+*.swp
+*.orig
+env/
+*.pyc
+*.egg
+*.egg-info
+node_modules/
+pkg/
+*.log
+.hg

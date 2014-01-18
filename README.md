@@ -8,7 +8,7 @@ Installation
     $ cd $HOME/.dotfiles
     $ rake
 
-Additionally for OS X
+Additionally for OS X:
 
-    $ rake osx_defaults
+    $ rake defaults
 

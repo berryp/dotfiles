@@ -28,6 +28,8 @@ osx_defaults_commands = [
 
 backup_dir = "#{ENV['PWD']}/backup"
 
+# This is mostly a one time task that is used to populate the dotfiles
+# for this repository.
 task :init do
   dotfiles.each do |df|
     src = "#{ENV['HOME']}/.#{df}"
@@ -36,6 +38,7 @@ task :init do
   end
 end
 
+# Removes all dotfiles (or symlinks) from the home dir.
 task :clean do
   dotfiles.each do |df|
     src = "#{ENV['HOME']}/.#{df}"
@@ -43,6 +46,7 @@ task :clean do
   end
 end
 
+# Takes backups of the dotfiles in the home dir.
 task :backup do
   FileUtils.mkdir_p(backup_dir)
   dotfiles.each do |df|
@@ -52,6 +56,7 @@ task :backup do
   end
 end
 
+# Install the dotfiles.
 task :install do
   Rake::Task[:backup].clear
   dotfiles.each do |df|
@@ -62,6 +67,7 @@ task :install do
   end
 end
 
+# Write OS X defaults.
 task :osx_defaults do
   osx_defaults_commands.each do |default|
     puts(default); system(default)

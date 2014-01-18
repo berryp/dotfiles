@@ -1,14 +1,14 @@
 dotfiles
 ========
 
-OS X Defaults
--------------
+Installation
+------------
 
-General/various defaults
+    $ git clone git@github.com:berryp/dotfiles.git $HOME/.dotfiles
+    $ cd $HOME/.dotfiles
+    $ rake
 
-    http://www.bresink.com/osx/TinkerTool.html
+Additionally for OS X
 
-Disable Dashboard
-
-    defaults write com.apple.dashboard mcx-disabled -boolean YES && killall Dock
+    $ rake osx_defaults
 

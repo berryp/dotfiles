@@ -36,12 +36,19 @@ task :init do
   end
 end
 
+task :clean do
+  dotfiles.each do |df|
+    src = "#{ENV['HOME']}/.#{df}"
+    FileUtils::Verbose.rm(src)
+  end
+end
+
 task :backup do
   FileUtils.mkdir_p(backup_dir)
   dotfiles.each do |df|
     src = "#{ENV['HOME']}/.#{df}"
     dest = "#{backup_dir}/#{df}"
-    FileUtils::Verbose.cp(src, dest)
+    FileUtils::Verbose.cp(src, dest) if File.exists? src
   end
 end
 
@@ -59,6 +66,8 @@ task :osx_defaults do
   osx_defaults_commands.each do |default|
     puts(default); system(default)
   end
+  puts
+  puts '* OS X defaults preference pane http://www.bresink.com/osx/TinkerTool.html'
 end
 
 task :osx => [:osx_defaults]

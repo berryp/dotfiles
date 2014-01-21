@@ -62,12 +62,16 @@ set colorcolumn=80
 
 set noeb vb t_vb=
 
+
 " ***********************************
 " PLUGIN SETTINGS
 " ***********************************
 
 let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_args = '--ignore="E126,E127,E128"'
+
 let g:syntastic_javascript_checkers=['jshint']
+
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|node_modules|env|tmp|build)$'
 
 "let g:ctrlp_custom_ignore = {
@@ -76,7 +80,7 @@ let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|node_modules|env|tmp|build)$'
 
 
 " ***********************************
-" SYNTAX
+" SYNTAX SETTINGS
 " ***********************************
 
 " Indentation.
@@ -87,7 +91,9 @@ au BufEnter *.py set ts=4 sw=4 sts=4
 au BufRead *.hbs,*.handlebars set ft=mustache
 
 
-" KEYS
+" ***********************************
+" KEY MAPPINGS
+" ***********************************
 
 " Window/viewport Navigation
 map <c-j> <c-w>j
@@ -106,6 +112,7 @@ map <leader>gc :Gcommit<CR>
 map <leader>gb :Gblame<CR>
 map <leader>gl :Glog<CR>
 map <leader>gp :Gpush<CR>
+
 
 " ***********************************
 " FUNCTIONS

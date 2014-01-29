@@ -51,7 +51,7 @@
 	path = 
 
 [mergetool "sourcetree"]
-	cmd = /Users/berryp/Library/Application Support/SourceTree/SourceTree 1.8.0.3/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Users/berryp/Library/Application Support/SourceTree/SourceTree 1.8.0.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 
 [push]

@@ -1,5 +1,8 @@
 #!/bin/sh
 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 # Color LS
 colorflag="-G"
 alias ls="command ls ${colorflag}"
@@ -57,8 +60,6 @@ export LESS=gi
 export HISTCONTROL=ignoreboth
 export HISTSIZE=10000
 export BLOCKSIZE=K
-# export LC_ALL=en_US.UTF-8
-# export LANG=en_US.UTF-8
 
 ### EC2
 export JAVA_HOME="$(/usr/libexec/java_home)"

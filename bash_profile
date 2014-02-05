@@ -139,7 +139,7 @@ command_symbol="⌘ "
 dirty_symbol="✳"
 
 function vcs_prompt() {
-  vcprompt -f "[%n:%b]"
+  vcprompt -f "[%n:%b%m%u]"
 }
 export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(vcs_prompt) ]] && echo \" on \")\[$PURPLE\]\$(vcs_prompt)\[$WHITE\]\n$command_symbol\[$RESET\] "
 export PS2="\[$ORANGE\]→ \[$RESET\]"

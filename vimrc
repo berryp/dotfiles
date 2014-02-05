@@ -44,7 +44,7 @@ filetype indent on
 
 let mapleader=","
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,node_nodules/,env/,*.egg,*.egg-info,.*
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,node_nodules/,env/,*.egg,*.egg-info,.*,*.pwc,*.tar,*.gz
 
 set t_Co=256
 

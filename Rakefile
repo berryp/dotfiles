@@ -13,6 +13,7 @@ dotfiles = [
   'gemrc',
   'vimrc',
   'gvimrc',
+  'zshrc',
 ]
 
 osx_defaults_commands = [

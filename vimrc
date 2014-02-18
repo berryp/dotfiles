@@ -65,6 +65,7 @@ set incsearch                     " ...dynamically as they are typed.
 set shortmess=atI                 " Stifle many interruptive prompts.
 set backspace=indent,eol,start    " Intuitive backspacing in insert mode.
 set visualbell                    " No bell.
+set virtualedit=block             " Useful for column select.
 
 " Make tabs and trailing spaces visible when requested.
 set listchars=tab:>-,trail:·
@@ -107,6 +108,7 @@ set laststatus=2
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 
+set shellcmdflag=-c                 " Tell the shell it is OK not to be interactive.
 
 " ***********************************
 " PLUGIN SETTINGS

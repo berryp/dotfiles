@@ -52,8 +52,48 @@ plugins=(git mercurial osx npm git-extras bower brew cloudapp)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+alias wo='workon '
 
-export PATH="/Users/berryp/.rbenv/shims:/Users/berryp/node_modules/.bin:/Users/berryp/projects/incubator-cordova-android/bin:/Users/berryp/bin:/usr/local/share:/usr/local/bin:/usr/local/sbin:/Users/berryp/.rbenv/shims:/Users/berryp/node_modules/.bin:/Users/berryp/projects/incubator-cordova-android/bin:/Users/berryp/bin:/usr/local/share:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin"
+# cd aliases.
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
+export WORKON_HOME=~/work/.envs
+
+source /usr/local/bin/virtualenvwrapper.sh
+
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt SHARE_HISTORY
+setopt APPEND_HISTORY
+
+# ls colors regardless of OS.
+ls --color -d . &>/dev/null 2>&1 && alias ls='ls --color=if-tty' || alias ls='ls -G'
+
+# Completion.
+setopt auto_menu         # show completion menu on succesive tab press
+setopt complete_in_word
+setopt always_to_end
+setopt  globcomplete
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+zstyle ':completion:*:*:*:*:processes' command "ps -u `whoami` -o pid,user,comm -w -w"
+
+# disable named-directories autocompletion
+zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
+
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*:functions' ignored-patterns '_*'
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 2 numeric
+zstyle -e ':completion:*:approximate:*'  max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)'
+ 
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
@@ -68,4 +108,8 @@ export PATH="/Users/berryp/.rbenv/shims:/Users/berryp/node_modules/.bin:/Users/b
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+if [[ -e $HOME/.zshrc-private ]]; then
+    source $HOME/.zshrc-private
+fi
 

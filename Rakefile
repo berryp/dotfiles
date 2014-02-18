@@ -14,6 +14,7 @@ dotfiles = [
   'vimrc',
   'gvimrc',
   'zshrc',
+  'zshenv',
 ]
 
 osx_defaults_commands = [

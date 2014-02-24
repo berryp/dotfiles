@@ -52,6 +52,8 @@ plugins=(git mercurial osx npm git-extras bower brew cloudapp)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+export PYTHONDONTWRITEBYTECODE=1
+
 alias wo='workon '
 
 # cd aliases.
@@ -60,6 +62,9 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
+
+alias v="mvim --remote-tab-silent "
+alias _pycleanjunk='find . -name '\''*.pyc'\'' -or -name '\''*.orig'\'' -or -name '\''*.swp'\'' -or -name '\''*.swo'\'' -or -name '\''*.log'\'' -or -name Pyro_log -or -name '\''*.egg-info'\'' | xargs rm -vRf'
 
 export WORKON_HOME=~/work/.envs
 
@@ -112,4 +117,3 @@ zstyle -e ':completion:*:approximate:*'  max-errors 'reply=($((($#PREFIX+$#SUFFI
 if [[ -e $HOME/.zshrc-private ]]; then
     source $HOME/.zshrc-private
 fi
-

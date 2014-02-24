@@ -22,6 +22,8 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'mklabs/grunt.vim'
 Bundle 'groenewege/vim-less'
 Bundle 'nanotech/jellybeans.vim'
+Bundle 'jpo/vim-railscasts-theme'
+Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'bling/vim-airline'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
@@ -30,7 +32,10 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'sjl/gundo.vim'
 Bundle 'vim-scripts/taglist.vim'
-
+Bundle 'mkitt/tabline.vim'
+Bundle 'othree/html5.vim'
+Bundle 'vim-scripts/CSApprox'
+Bundle 'embear/vim-localvimrc'
 
 " ***********************************
 " GLOBAL SETTINGS
@@ -44,12 +49,13 @@ filetype indent on
 
 let mapleader=","
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,node_nodules/,env/,*.egg,*.egg-info,.*,*.pwc,*.tar,*.gz
+set wildignore+=tmp,*.so,*.swp,*.zip,node_nodules,env,*.egg,*.min.js
+set wildignore+=*.egg-info,.*,*.pyc,*.tar,*.gz,*.log,*.fla,*.swf
 
 set t_Co=256
 
 " Editor.
-color jellybeans
+color tomorrow-night
 
 set relativenumber                " Line numbers relative to current position.
 set cursorline                    " Highlight current line.
@@ -114,7 +120,13 @@ set shellcmdflag=-c                 " Tell the shell it is OK not to be interact
 " PLUGIN SETTINGS
 " ***********************************
 
-" Use Unicode characters rather than powerline patched fonts.
+set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
+
+" Powerline patched fonts are not rendering the symbols correctly in iTerm2
+" so replace them with regular Unicode characters.
+
+let g:airline_powerline_fonts = 0
+
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -136,6 +148,7 @@ let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|node_modules|env|tmp|build)$'
 "  \ 'dir': '\.git$|\.hg$|\.svn$|node_modules$|env$|tmp$|build$',
 "  \ 'file': '\.jpg$|\.png$|\.jpg$|\.webp$|swf$' }
 
+let g:localvimrc_ask  " Don't ask to load local vimrc.
 
 " ***********************************
 " SYNTAX SETTINGS
@@ -158,6 +171,9 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+
+" Easier exit of insert mode.
+inoremap kj <Esc>
 
 " Window/viewport Navigation
 map <c-j> <c-w>j

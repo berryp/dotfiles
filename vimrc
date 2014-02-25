@@ -1,9 +1,10 @@
 set nocompatible                  " We don't need vi compatability.
-filetype off                      " Must be turned off prior to loading bundles.
+filetype off                      " Required.
 
 " Reference material for settings.
 " http://items.sjbach.com/319/configuring-vim-right
 " https://github.com/skwp/dotfiles/blob/master/vimrc
+" https://github.com/alfredodeza/dotfiles/blob/master/.vimrc
 
 
 " ***********************************
@@ -49,11 +50,10 @@ Bundle 'nanotech/jellybeans.vim'
 " GLOBAL SETTINGS
 " ***********************************
 
-" File-type highlighting and configuration.
-syntax on
-filetype plugin indent on
+syntax on                         " Required.
+filetype plugin indent on         " Required.
 
-let mapleader=","
+let mapleader=","                 " Comma is easier to get to than backslash.
 
 " This is especially useful with the ctrlp plugin.
 set wildignore+=tmp,*.so,*.swp,*.zip,node_nodules,env,*.egg,*.min.js

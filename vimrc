@@ -116,9 +116,6 @@ set expandtab                     " Expand tags to spaces on tab key.
 
 set laststatus=2                  " Always show the status line.
 
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
-
 set shellcmdflag=-c               " Tell the shell it is OK not to be interactive.
 
 
@@ -130,6 +127,7 @@ set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
 
 " Powerline patched fonts are not rendering the symbols correctly in iTerm2
 " so replace them with regular Unicode characters.
+" TODO: Figure out why patched fonts are not rendering, and fix.
 
 let g:airline_powerline_fonts = 0
 
@@ -150,11 +148,8 @@ let g:syntastic_javascript_checkers=['jshint']
 
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|node_modules|env|tmp|build)$'
 
-"let g:ctrlp_custom_ignore = {
-"  \ 'dir': '\.git$|\.hg$|\.svn$|node_modules$|env$|tmp$|build$',
-"  \ 'file': '\.jpg$|\.png$|\.jpg$|\.webp$|swf$' }
-
 " Don't ask to load local vimrc.
+" TODO: This doesn't seem to be working.
 if (!exists("g:localvimrc_ask"))
   let g:localvimrc_ask = 0
 else

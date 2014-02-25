@@ -61,6 +61,7 @@ set wildignore+=tmp,*.so,*.swp,*.zip,node_nodules,env,*.egg,*.min.js
 set wildignore+=*.egg-info,.*,*.pyc,*.tar,*.gz,*.log,*.fla,*.swf
 
 set t_Co=256                      " Use 256 colors where supported.
+set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
 
 " Editor.
 color tomorrow-night
@@ -120,8 +121,6 @@ set shellcmdflag=-c               " Tell the shell it is OK not to be interactiv
 " *****************************************************************************
 " PLUGIN SETTINGS
 " *****************************************************************************
-
-set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
 
 " Powerline patched fonts are not rendering the symbols correctly in iTerm2
 " so replace them with regular Unicode characters.

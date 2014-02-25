@@ -92,9 +92,7 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set wildmenu                      " Make file/command completion useful.
 set wildmode=list:longest
 
-" Allow buffers to be put to the background without writing to disk.
-" http://items.sjbach.com/319/configuring-vim-right
-set hidden
+set hidden                        " Don't write to disk when loosing focus.
 
 set ttyscroll=10                  " Max lines to scroll the screen.
 set encoding=utf-8                " Set the default encoding to UTF-8.

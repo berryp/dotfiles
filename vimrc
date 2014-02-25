@@ -17,28 +17,28 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " General.
-Bundle 'tpope/vim-sensible'       " Some sensible defaults.
-Bundle 'tpope/vim-fugitive'       " Git wrapper.
-Bundle 'bling/vim-airline'        " Status/tabline enhancements.
-Bundle 'sjl/gundo.vim'            " Graphical undo history.
-Bundle 'mkitt/tabline.vim'        " Improved buffer tabs.
-Bundle 'vim-scripts/CSApprox'     " gvim only color schemes in the terminal.
-Bundle 'embear/vim-localvimrc'    " Source vimrc files in local dirs.
+Bundle 'tpope/vim-sensible'
+Bundle 'tpope/vim-fugitive'
+Bundle 'bling/vim-airline'
+Bundle 'sjl/gundo.vim'
+Bundle 'mkitt/tabline.vim'
+Bundle 'vim-scripts/CSApprox'
+Bundle 'embear/vim-localvimrc'
 
 " Files and buffers.
-Bundle 'Lokaltog/vim-easymotion'  " Simpler movement around files.
-Bundle 'kien/ctrlp.vim'           " Open files using fuzzy search / regex.
-Bundle 'vim-scripts/taglist.vim'  " Browse code files by symbols.
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'kien/ctrlp.vim'
+Bundle 'vim-scripts/taglist.vim'
 
 " Movement and editing.
-Bundle 'tomtom/tcomment_vim'      " Commenting, similar to NERDCommenter.
-Bundle 'tpope/vim-surround'       " Easily surround text with brackets, etc.
-Bundle 'tristen/vim-sparkup'      " HTML expansion inspired by Zen Coding.
-Bundle 'msanders/snipmate.vim'    " Textmate style snippets.
+Bundle 'tomtom/tcomment_vim'
+Bundle 'tpope/vim-surround'
+Bundle 'tristen/vim-sparkup'
+Bundle 'msanders/snipmate.vim'
 
 " Syntax
-Bundle 'scrooloose/syntastic'     " Syntax checking.
-Bundle 'othree/html5.vim'         " Extends html sytax highlighting for html5.
+Bundle 'scrooloose/syntastic'
+Bundle 'othree/html5.vim'
 Bundle 'groenewege/vim-less'
 Bundle 'mustache/vim-mustache-handlebars'
 

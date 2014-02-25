@@ -5,4 +5,5 @@ set guioptions-=e               " Use native vim tab bar.
 "let g:airline_powerline_fonts = 1
 "set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
 
-
+set autoread                      " Detect file changes.
+set clipboard=unnamed             " Always yank to default register.

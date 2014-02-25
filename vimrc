@@ -1,5 +1,5 @@
-set nocompatible
-filetype off
+set nocompatible                  " We don't need vi compatability.
+filetype off                      " Must be turned off prior to loading bundles.
 
 " Reference material for settings.
 " http://items.sjbach.com/319/configuring-vim-right
@@ -15,27 +15,35 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
-" Bundles
-Bundle 'tpope/vim-sensible'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'mklabs/grunt.vim'
+" General.
+Bundle 'tpope/vim-sensible'       " Some sensible defaults.
+Bundle 'tpope/vim-fugitive'       " Git wrapper.
+Bundle 'bling/vim-airline'        " Status/tabline enhancements.
+Bundle 'sjl/gundo.vim'            " Graphical undo history.
+Bundle 'mkitt/tabline.vim'        " Improved buffer tabs.
+Bundle 'vim-scripts/CSApprox'     " gvim only color schemes in the terminal.
+Bundle 'embear/vim-localvimrc'    " Source vimrc files in local dirs.
+
+" Files and buffers.
+Bundle 'Lokaltog/vim-easymotion'  " Simpler movement around files.
+Bundle 'kien/ctrlp.vim'           " Open files using fuzzy search / regex.
+Bundle 'vim-scripts/taglist.vim'  " Browse code files by symbols.
+
+" Movement and editing.
+Bundle 'tomtom/tcomment_vim'      " Commenting, similar to NERDCommenter.
+Bundle 'tpope/vim-surround'       " Easily surround text with brackets, etc.
+Bundle 'tristen/vim-sparkup'      " HTML expansion inspired by Zen Coding.
+Bundle 'msanders/snipmate.vim'    " Textmate style snippets.
+
+" Syntax
+Bundle 'scrooloose/syntastic'     " Syntax checking.
+Bundle 'othree/html5.vim'         " Extends html sytax highlighting for html5.
 Bundle 'groenewege/vim-less'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'jpo/vim-railscasts-theme'
-Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'bling/vim-airline'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'kien/ctrlp.vim'
 Bundle 'mustache/vim-mustache-handlebars'
-Bundle 'sjl/gundo.vim'
-Bundle 'vim-scripts/taglist.vim'
-Bundle 'mkitt/tabline.vim'
-Bundle 'othree/html5.vim'
-Bundle 'vim-scripts/CSApprox'
-Bundle 'embear/vim-localvimrc'
+
+" Color schemes.
+Bundle 'chriskempson/vim-tomorrow-theme'
+Bundle 'nanotech/jellybeans.vim' 
 
 " ***********************************
 " GLOBAL SETTINGS
@@ -43,16 +51,15 @@ Bundle 'embear/vim-localvimrc'
 
 " File-type highlighting and configuration.
 syntax on
-filetype on
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 let mapleader=","
 
+" This is especially useful with the ctrlp plugin.
 set wildignore+=tmp,*.so,*.swp,*.zip,node_nodules,env,*.egg,*.min.js
 set wildignore+=*.egg-info,.*,*.pyc,*.tar,*.gz,*.log,*.fla,*.swf
 
-set t_Co=256
+set t_Co=256                      " Use 256 colors where supported.
 
 " Editor.
 color tomorrow-night
@@ -70,7 +77,6 @@ set hlsearch                      " Highlight search terms...
 set incsearch                     " ...dynamically as they are typed.
 set shortmess=atI                 " Stifle many interruptive prompts.
 set backspace=indent,eol,start    " Intuitive backspacing in insert mode.
-set visualbell                    " No bell.
 set virtualedit=block             " Useful for column select.
 
 " Make tabs and trailing spaces visible when requested.
@@ -82,39 +88,37 @@ set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 " Auto complete.
-set wildmenu                       " Make file/command completion useful.
+set wildmenu                      " Make file/command completion useful.
 set wildmode=list:longest
 
 " Allow buffers to be put to the background without writing to disk.
 " http://items.sjbach.com/319/configuring-vim-right
 set hidden
 
-set ttyscroll=10
-set encoding=utf-8
-set nowrap
-set number
-set autoread
-set clipboard=unnamed
+set ttyscroll=10                  " Max lines to scroll the screen.
+set encoding=utf-8                " Set the default encoding to UTF-8.
+set nowrap                        " Disable line wrapping.
+set number                        " Show line numbers.
 
-set colorcolumn=80
+set colorcolumn=80                " Show a column highlight after 80 characters.
 
-set noeb vb t_vb=
+set noeb vb t_vb=                 " Disable the bell.
 
 " Indentation
-set autoindent
-set smartindent
-set smarttab
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
-set expandtab
+set autoindent                    " Use indent from previous line.
+set smartindent                   " Auto indenting on new line.
+set smarttab                      " Smart handling of the tab key.
+set shiftwidth=2                  " Number of columns for reindent operations.
+set softtabstop=2                 " Number of columns for tab key.
+set tabstop=2                     " Tabs are 2 columns.
+set expandtab                     " Expand tags to spaces on tab key.
 
-set laststatus=2
+set laststatus=2                  " Always show the status line.
 
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 
-set shellcmdflag=-c                 " Tell the shell it is OK not to be interactive.
+set shellcmdflag=-c               " Tell the shell it is OK not to be interactive.
 
 " ***********************************
 " PLUGIN SETTINGS
@@ -148,7 +152,12 @@ let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|node_modules|env|tmp|build)$'
 "  \ 'dir': '\.git$|\.hg$|\.svn$|node_modules$|env$|tmp$|build$',
 "  \ 'file': '\.jpg$|\.png$|\.jpg$|\.webp$|swf$' }
 
-let g:localvimrc_ask  " Don't ask to load local vimrc.
+" Don't ask to load local vimrc.
+if (!exists("g:localvimrc_ask"))
+  let g:localvimrc_ask = 0
+else
+  let g:localvimrc_ask = 0
+endif
 
 " ***********************************
 " SYNTAX SETTINGS
@@ -192,7 +201,7 @@ nnoremap <C-y> 3<C-y>
 map <F5> :Grunt build<CR>
 map <F8> :TlistToggle<CR>
 
-" Git
+" Fugitive.
 map <leader>gs :Gstatus<CR>
 map <leader>gd :Gdiff<CR>
 map <leader>gc :Gcommit<CR>
@@ -206,7 +215,6 @@ map <leader>gp :Gpush<CR>
 " ***********************************
 
 com! FormatJSON %!python -m json.tool
-
 
 " ***********************************
 " EVERYTHING ELSE

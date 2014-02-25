@@ -187,7 +187,7 @@ noremap <Right> <NOP>
 " Easier exit of insert mode.
 inoremap kj <Esc>
 
-" Window/viewport Navigation
+" Window/viewport Navigation.
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
@@ -200,7 +200,7 @@ nnoremap <C-Right> :tabnext<CR>
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
-" Plugins
+" Commands.
 map <F5> :Grunt build<CR>
 map <F8> :TlistToggle<CR>
 

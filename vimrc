@@ -1,17 +1,23 @@
 set nocompatible                  " We don't need vi compatability.
-filetype off                      " Required.
 
-" Reference material for settings.
+
+" *****************************************************************************
+"  REFERENCE MATERIAL
+" *****************************************************************************
+
 " http://items.sjbach.com/319/configuring-vim-right
 " https://github.com/skwp/dotfiles/blob/master/vimrc
 " https://github.com/alfredodeza/dotfiles/blob/master/.vimrc
+" http://nvie.com/posts/how-i-boosted-my-vim/
+" https://github.com/mitechie/pyvim/blob/master/.vimrc
 
 
 " *****************************************************************************
-" BUNDLES
+"  VUNDLE SETUP AND BUNDLES
 " *****************************************************************************
 
 " Setup
+filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
@@ -24,17 +30,23 @@ Bundle 'sjl/gundo.vim'
 Bundle 'mkitt/tabline.vim'
 Bundle 'vim-scripts/CSApprox'
 Bundle 'embear/vim-localvimrc'
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
+Bundle 'mattn/calendar-vim'
+Bundle 'mklabs/grunt.vim'
 
 " Files and buffers.
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/taglist.vim'
+Bundle 'sjbach/lusty'
 
 " Movement and editing.
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-surround'
 Bundle 'tristen/vim-sparkup'
 Bundle 'msanders/snipmate.vim'
+Bundle 'nvie/vim-togglemouse'
 
 " Syntax
 Bundle 'scrooloose/syntastic'
@@ -48,7 +60,7 @@ Bundle 'nanotech/jellybeans.vim'
 
 
 " *****************************************************************************
-" GLOBAL SETTINGS
+"  GLOBAL CONFIGURATION
 " *****************************************************************************
 
 syntax on                         " Required.
@@ -63,7 +75,10 @@ set wildignore+=*.egg-info,.*,*.pyc,*.tar,*.gz,*.log,*.fla,*.swf
 set t_Co=256                      " Use 256 colors where supported.
 set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
 
-" Editor.
+" -----------------------------------------------------------------------------
+"  Editor
+" -----------------------------------------------------------------------------
+
 color tomorrow-night
 
 set relativenumber                " Line numbers relative to current position.
@@ -72,16 +87,21 @@ set expandtab                     " Expand tabs to spaces.
 set modelines=0                   " Don't parse modelines.
 set history=1000                  " Sensible history.
 runtime macros/matchit.vim        " Enable extended % matching.
-set ignorecase                    " Use case-smart searching.
-set smartcase
-set title                         " Set the terminal title.
 set hlsearch                      " Highlight search terms...
 set incsearch                     " ...dynamically as they are typed.
+set ignorecase                    " Case insensitive search.
+set smartcase                     " Case sensitive if upper case in search.
+set title                         " Set the terminal title.
 set shortmess=atI                 " Stifle many interruptive prompts.
 set backspace=indent,eol,start    " Intuitive backspacing in insert mode.
 set virtualedit=block             " Useful for column select.
 
+set laststatus=2                  " Always show the status line.
+
+set shellcmdflag=-c               " Allow the shell to be non-interactive.
+
 " Make tabs and trailing spaces visible when requested.
+set list
 set listchars=tab:>-,trail:·
 nmap <silent> <leader>s :set nolist!<CR>
 
@@ -104,7 +124,10 @@ set colorcolumn=80                " Show a column highlight after 80 characters.
 
 set noeb vb t_vb=                 " Disable the bell.
 
-" Indentation
+" -----------------------------------------------------------------------------
+"  Indentation
+" -----------------------------------------------------------------------------
+
 set autoindent                    " Use indent from previous line.
 set smartindent                   " Auto indenting on new line.
 set smarttab                      " Smart handling of the tab key.
@@ -113,13 +136,9 @@ set softtabstop=2                 " Number of columns for tab key.
 set tabstop=2                     " Tabs are 2 columns.
 set expandtab                     " Expand tags to spaces on tab key.
 
-set laststatus=2                  " Always show the status line.
-
-set shellcmdflag=-c               " Tell the shell it is OK not to be interactive.
-
 
 " *****************************************************************************
-" PLUGIN SETTINGS
+"  PLUGIN CONFIGURATION
 " *****************************************************************************
 
 " Powerline patched fonts are not rendering the symbols correctly in iTerm2
@@ -138,11 +157,12 @@ let g:airline_symbols.linenr = '␤'
 let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.whitespace = 'Ξ'
 
-let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = '--ignore="E126,E127,E128,W124"'
 
-let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_javascript_checkers = ['jshint']
 
+let g:ctrlp_working_path_mode = 0 " Use working path mvim was opened from.
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|node_modules|env|tmp|build)$'
 
 " Don't ask to load local vimrc.
@@ -153,9 +173,11 @@ else
   let g:localvimrc_ask = 0
 endif
 
+let g:calendar_diary=$HOME.'/.vim/diary'
+
 
 " *****************************************************************************
-" SYNTAX SETTINGS
+"  SYNTAX CONFIGURATION
 " *****************************************************************************
 
 " Indentation.
@@ -167,17 +189,49 @@ au BufRead *.hbs,*.handlebars set ft=mustache
 
 
 " *****************************************************************************
-" KEY MAPPINGS
+"  KEY MAPPINGS
 " *****************************************************************************
+
+" Easier exit of insert mode.
+inoremap kj <Esc>
+
+" Faster access to ex mode.
+nnoremap ; :
+
+" -----------------------------------------------------------------------------
+"  Commands
+" -----------------------------------------------------------------------------
+
+map <F5> :Grunt build<CR>
+map <F8> :TlistToggle<CR>
+
+" Fugitive.
+map <leader>gs :Gstatus<CR>
+map <leader>gd :Gdiff<CR>
+map <leader>gc :Gcommit<CR>
+map <leader>gb :Gblame<CR>
+map <leader>gl :Glog<CR>
+map <leader>gp :Gpush<CR>
+
+set pastetoggle=<F2>              " Switch paste states on F2.
+
+nmap <silent> ,/ :nohlsearch<CR>  " Shortcut to clearing search highlights.
+
+noremap! <leader>cal :CalendarH<CR>
+noremap! <leader>caL :Calendar<CR>
+
+map ev :e ~/.vimrc<CR>
+map es :so ~/.vimrc<CR>
+
+" -----------------------------------------------------------------------------
+"  Navigation
+" -----------------------------------------------------------------------------
 
 " Disable arrow keys.
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
-
-" Easier exit of insert mode.
-inoremap kj <Esc>
 
 " Window/viewport Navigation.
 map <c-j> <c-w>j
@@ -192,28 +246,16 @@ nnoremap <C-Right> :tabnext<CR>
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
-" Commands.
-map <F5> :Grunt build<CR>
-map <F8> :TlistToggle<CR>
-
-" Fugitive.
-map <leader>gs :Gstatus<CR>
-map <leader>gd :Gdiff<CR>
-map <leader>gc :Gcommit<CR>
-map <leader>gb :Gblame<CR>
-map <leader>gl :Glog<CR>
-map <leader>gp :Gpush<CR>
-
 
 " *****************************************************************************
-" FUNCTIONS
+"  COMMANDS AND FUNCTIONS
 " *****************************************************************************
 
 com! FormatJSON %!python -m json.tool
 
 
 " *****************************************************************************
-" EVERYTHING ELSE
+"  EVERYTHING ELSE
 " *****************************************************************************
 
 " Load private settings.

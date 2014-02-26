@@ -96,3 +96,5 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
+[github]
+	user = berryp

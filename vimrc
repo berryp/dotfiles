@@ -83,10 +83,8 @@ color tomorrow-night
 
 set relativenumber                " Line numbers relative to current position.
 set cursorline                    " Highlight current line.
-set expandtab                     " Expand tabs to spaces.
 set modelines=0                   " Don't parse modelines.
 set history=1000                  " Sensible history.
-runtime macros/matchit.vim        " Enable extended % matching.
 set hlsearch                      " Highlight search terms...
 set incsearch                     " ...dynamically as they are typed.
 set ignorecase                    " Case insensitive search.

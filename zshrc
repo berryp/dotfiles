@@ -66,6 +66,8 @@ alias ......="cd ../../../../.."
 alias v="mvim --remote-tab-silent "
 alias _pycleanjunk='find . -name '\''*.pyc'\'' -or -name '\''*.orig'\'' -or -name '\''*.swp'\'' -or -name '\''*.swo'\'' -or -name '\''*.log'\'' -or -name Pyro_log -or -name '\''*.egg-info'\'' | xargs rm -vRf'
 
+alias upcheese='python setup.py register -r cheese sdist upload -r cheese'
+
 export WORKON_HOME=~/work/.envs
 
 source /usr/local/bin/virtualenvwrapper.sh
@@ -73,7 +75,6 @@ source /usr/local/bin/virtualenvwrapper.sh
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-setopt SHARE_HISTORY
 setopt APPEND_HISTORY
 
 # ls colors regardless of OS.

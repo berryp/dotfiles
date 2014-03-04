@@ -1,4 +1,4 @@
-set nocompatible                  " We don't need vi compatability.
+set nocompatible                  " We don't need vi compatibility.
 
 
 " *****************************************************************************
@@ -15,6 +15,9 @@ set nocompatible                  " We don't need vi compatability.
 " *****************************************************************************
 "  VUNDLE SETUP AND BUNDLES
 " *****************************************************************************
+
+" Note: The vundle repo needs to be cloned in to .vim/bundle.
+" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 " Setup
 filetype off
@@ -34,6 +37,7 @@ Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/calendar-vim'
 Bundle 'mklabs/grunt.vim'
+Bundle 'Valloric/YouCompleteMe'
 
 " Files and buffers.
 Bundle 'Lokaltog/vim-easymotion'
@@ -57,6 +61,9 @@ Bundle 'mustache/vim-mustache-handlebars'
 " Color schemes.
 Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'nanotech/jellybeans.vim' 
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'mhinz/vim-signify'
+Bundle 'tpope/vim-markdown'
 
 
 " *****************************************************************************
@@ -75,11 +82,17 @@ set wildignore+=*.egg-info,.*,*.pyc,*.tar,*.gz,*.log,*.fla,*.swf
 set t_Co=256                      " Use 256 colors where supported.
 set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
 
+set spell spelllang=en_us
+set spellfile=~/.vim/spell/en.utf-8.add
+
+" this is a plugin.
+
 " -----------------------------------------------------------------------------
 "  Editor
 " -----------------------------------------------------------------------------
 
-color tomorrow-night
+colorscheme Tomorrow-Night
+
 
 set relativenumber                " Line numbers relative to current position.
 set cursorline                    " Highlight current line.
@@ -129,7 +142,7 @@ set noeb vb t_vb=                 " Disable the bell.
 set autoindent                    " Use indent from previous line.
 set smartindent                   " Auto indenting on new line.
 set smarttab                      " Smart handling of the tab key.
-set shiftwidth=2                  " Number of columns for reindent operations.
+set shiftwidth=2                  " Number of columns for re-indent operations.
 set softtabstop=2                 " Number of columns for tab key.
 set tabstop=2                     " Tabs are 2 columns.
 set expandtab                     " Expand tags to spaces on tab key.
@@ -151,7 +164,7 @@ endif
 
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = ''
 let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.whitespace = 'Ξ'
 
@@ -182,13 +195,17 @@ let g:calendar_diary=$HOME.'/.vim/diary'
 au BufEnter *.html,*.hbs,*.json,*.jade,*.js set ts=2 sw=2 sts=2
 au BufEnter *.py set ts=4 sw=4 sts=4
 
-" Map filetypes to syntax.
+" Map file types to syntax.
 au BufRead *.hbs,*.handlebars set ft=mustache
 
 
 " *****************************************************************************
 "  KEY MAPPINGS
 " *****************************************************************************
+
+" -----------------------------------------------------------------------------
+"  Editor
+" -----------------------------------------------------------------------------
 
 " Easier exit of insert mode.
 inoremap kj <Esc>
@@ -203,13 +220,15 @@ nnoremap ; :
 map <F5> :Grunt build<CR>
 map <F8> :TlistToggle<CR>
 
-" Fugitive.
+" Fugitive (Git).
 map <leader>gs :Gstatus<CR>
 map <leader>gd :Gdiff<CR>
 map <leader>gc :Gcommit<CR>
 map <leader>gb :Gblame<CR>
 map <leader>gl :Glog<CR>
 map <leader>gp :Gpush<CR>
+
+nmap <silent> <leader>s :set spell!<CR> " Toggle spellcheck.
 
 set pastetoggle=<F2>              " Switch paste states on F2.
 

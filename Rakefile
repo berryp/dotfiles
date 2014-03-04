@@ -12,6 +12,7 @@ dotfiles = [
   'hgignore_global',
   'gemrc',
   'vimrc',
+  'vim',
   'gvimrc',
   'zshrc',
   'zshenv',

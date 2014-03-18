@@ -47,30 +47,12 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git mercurial osx npm git-extras bower brew cloudapp)
+plugins=(git mercurial osx npm git-extras bower brew)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 export PYTHONDONTWRITEBYTECODE=1
-
-alias wo='workon '
-
-# cd aliases.
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ......="cd ../../../../.."
-
-alias v="mvim --remote-tab-silent "
-alias _pycleanjunk='find . -name '\''*.pyc'\'' -or -name '\''*.orig'\'' -or -name '\''*.swp'\'' -or -name '\''*.swo'\'' -or -name '\''*.log'\'' -or -name Pyro_log -or -name '\''*.egg-info'\'' | xargs rm -vRf'
-
-alias upcheese='python setup.py register -r cheese sdist upload -r cheese'
-
-export WORKON_HOME=~/work/.envs
-
-source /usr/local/bin/virtualenvwrapper.sh
 
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000

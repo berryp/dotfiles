@@ -35,9 +35,10 @@ Bundle 'vim-scripts/CSApprox'
 Bundle 'embear/vim-localvimrc'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
-Bundle 'mattn/calendar-vim'
+Bundle 'berryp/calendar-vim'
 Bundle 'mklabs/grunt.vim'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'mattn/emmet-vim'
 
 " Files and buffers.
 Bundle 'Lokaltog/vim-easymotion'
@@ -94,6 +95,7 @@ set spellfile=~/.vim/spell/en.utf-8.add
 colorscheme Tomorrow-Night
 
 
+"set number                        " Show line numbers.
 set relativenumber                " Line numbers relative to current position.
 set cursorline                    " Highlight current line.
 set modelines=0                   " Don't parse modelines.
@@ -129,11 +131,16 @@ set hidden                        " Don't write to disk when loosing focus.
 set ttyscroll=10                  " Max lines to scroll the screen.
 set encoding=utf-8                " Set the default encoding to UTF-8.
 set nowrap                        " Disable line wrapping.
-set number                        " Show line numbers.
 
 set colorcolumn=80                " Show a column highlight after 80 characters.
 
 set noeb vb t_vb=                 " Disable the bell.
+
+" Folding settings
+set foldmethod=indent             " Fold based on indent.
+set foldnestmax=10                " Deepest fold is 10 levels.
+set nofoldenable                  " Don't fold by default.
+set foldlevel=1                   " This is just what I use.
 
 " -----------------------------------------------------------------------------
 "  Indentation
@@ -194,9 +201,11 @@ let g:calendar_diary=$HOME.'/.vim/diary'
 " Indentation.
 au BufEnter *.html,*.hbs,*.json,*.jade,*.js set ts=2 sw=2 sts=2
 au BufEnter *.py set ts=4 sw=4 sts=4
+au BufEnter *.snippets set ts=4 sw=4 noexpandtab
 
 " Map file types to syntax.
 au BufRead *.hbs,*.handlebars set ft=mustache
+au BufRead *.xhtml set ft=html
 
 
 " *****************************************************************************

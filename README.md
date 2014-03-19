@@ -1,6 +1,17 @@
 dotfiles
 ========
 
+Prerequisites
+------------
+
+vcprompt (c version) - https://github.com/ericmeyer/vcprompt
+ctags
+
+## Vim
+
+Clone vundle plugin - https://github.com/ericmeyer/vcprompt
+Run `:BundleInstall` from vim.
+
 Installation
 ------------
 

@@ -37,7 +37,6 @@ Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 Bundle 'berryp/calendar-vim'
 Bundle 'mklabs/grunt.vim'
-Bundle 'Valloric/YouCompleteMe'
 Bundle 'mattn/emmet-vim'
 
 " Files and buffers.
@@ -83,7 +82,7 @@ set wildignore+=*.egg-info,.*,*.pyc,*.tar,*.gz,*.log,*.fla,*.swf
 set t_Co=256                      " Use 256 colors where supported.
 set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
 
-set spell spelllang=en_us
+set spelllang=en_us
 set spellfile=~/.vim/spell/en.utf-8.add
 
 " this is a plugin.

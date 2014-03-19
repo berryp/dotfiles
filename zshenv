@@ -20,6 +20,5 @@ alias upcheese='python setup.py register -r cheese sdist upload -r cheese'
 alias t='todo.sh '
 export WORKON_HOME=~/work/.envs
 
-source /usr/local/bin/virtualenvwrapper.sh
 
 

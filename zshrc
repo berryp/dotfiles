@@ -100,3 +100,4 @@ zstyle -e ':completion:*:approximate:*'  max-errors 'reply=($((($#PREFIX+$#SUFFI
 if [[ -e $HOME/.zshrc-private ]]; then
     source $HOME/.zshrc-private
 fi
+

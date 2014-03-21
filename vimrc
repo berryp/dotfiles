@@ -38,6 +38,7 @@ Bundle 'mattn/gist-vim'
 Bundle 'berryp/calendar-vim'
 Bundle 'mklabs/grunt.vim'
 Bundle 'mattn/emmet-vim'
+Bundle 'neochrome/todo.vim'
 
 " Files and buffers.
 Bundle 'Lokaltog/vim-easymotion'
@@ -85,7 +86,6 @@ set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
 set spelllang=en_us
 set spellfile=~/.vim/spell/en.utf-8.add
 
-" this is a plugin.
 
 " -----------------------------------------------------------------------------
 "  Editor
@@ -93,8 +93,7 @@ set spellfile=~/.vim/spell/en.utf-8.add
 
 colorscheme Tomorrow-Night
 
-
-"set number                        " Show line numbers.
+set number                        " Show line numbers.
 set relativenumber                " Line numbers relative to current position.
 set cursorline                    " Highlight current line.
 set modelines=0                   " Don't parse modelines.
@@ -113,9 +112,13 @@ set laststatus=2                  " Always show the status line.
 set shellcmdflag=-c               " Allow the shell to be non-interactive.
 
 " Make tabs and trailing spaces visible when requested.
-set list
 set listchars=tab:>-,trail:·
-nmap <silent> <leader>s :set nolist!<CR>
+nmap <leader>l :set list!<CR>
+
+"Invisible character colors
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
+
 
 " Store temporary files in central location.
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -205,6 +208,7 @@ au BufEnter *.snippets set ts=4 sw=4 noexpandtab
 " Map file types to syntax.
 au BufRead *.hbs,*.handlebars set ft=mustache
 au BufRead *.xhtml set ft=html
+au BufRead *.todo set ft=todo
 
 
 " *****************************************************************************
@@ -245,8 +249,9 @@ nmap <silent> ,/ :nohlsearch<CR>  " Shortcut to clearing search highlights.
 noremap! <leader>cal :CalendarH<CR>
 noremap! <leader>caL :Calendar<CR>
 
-map ev :e ~/.vimrc<CR>
-map es :so ~/.vimrc<CR>
+" TODO toggle
+map <silent><buffer> <leader>tt :TodoToggle<cr>
+imap <silent><buffer> <leader>tt <c-o>:TodoToggle<cr>
 
 " -----------------------------------------------------------------------------
 "  Navigation

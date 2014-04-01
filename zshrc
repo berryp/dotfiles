@@ -81,7 +81,7 @@ zstyle ':completion:*:functions' ignored-patterns '_*'
 zstyle ':completion:*:match:*' original only
 zstyle ':completion:*:approximate:*' max-errors 2 numeric
 zstyle -e ':completion:*:approximate:*'  max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)'
- 
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
@@ -96,6 +96,9 @@ zstyle -e ':completion:*:approximate:*'  max-errors 'reply=($((($#PREFIX+$#SUFFI
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+export GOROOT=`go env GOROOT`
+
 
 if [[ -e $HOME/.zshrc-private ]]; then
     source $HOME/.zshrc-private

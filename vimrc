@@ -58,6 +58,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'othree/html5.vim'
 Bundle 'groenewege/vim-less'
 Bundle 'mustache/vim-mustache-handlebars'
+Bundle 'jnwhiteh/vim-golang'
 
 " Color schemes.
 Bundle 'chriskempson/vim-tomorrow-theme'
@@ -91,7 +92,8 @@ set spellfile=~/.vim/spell/en.utf-8.add
 "  Editor
 " -----------------------------------------------------------------------------
 
-colorscheme Tomorrow-Night
+" colorscheme Tomorrow-Night
+colorscheme jellybeans
 
 set number                        " Show line numbers.
 set relativenumber                " Line numbers relative to current position.
@@ -204,6 +206,7 @@ let g:calendar_diary=$HOME.'/.vim/diary'
 au BufEnter *.html,*.hbs,*.json,*.jade,*.js set ts=2 sw=2 sts=2
 au BufEnter *.py set ts=4 sw=4 sts=4
 au BufEnter *.snippets set ts=4 sw=4 noexpandtab
+au BufEnter *.go set ts=4 sw=4
 
 " Map file types to syntax.
 au BufRead *.hbs,*.handlebars set ft=mustache
@@ -220,7 +223,9 @@ au BufRead *.todo set ft=todo
 " -----------------------------------------------------------------------------
 
 " Easier exit of insert mode.
-inoremap kj <Esc>
+inoremap jj <Esc>
+" Easier exit of insert mode into ex mode.
+inoremap ;; <Esc> :
 
 " Faster access to ex mode.
 nnoremap ; :

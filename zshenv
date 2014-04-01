@@ -18,7 +18,10 @@ alias gist='gist -c -p -s'
 alias flushdns="sudo dscacheutil -flushcache"
 alias upcheese='python setup.py register -r cheese sdist upload -r cheese'
 alias t='todo.sh '
-export WORKON_HOME=~/work/.envs
+alias activate='. env/bin/activate'
 
-
-
+export VIRTUALENVWRAPPER_PYTHON=`which python`
+export VIRTUALENV_DISTRIBUTE=1
+export WORKON_HOME=$HOME/work/.envs
+source `which virtualenvwrapper.sh`
+ 

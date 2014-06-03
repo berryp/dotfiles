@@ -23,6 +23,10 @@
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 
+  lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+  lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+  lg = !"git lg1"
+
   ls = ls-files
 
   # Other useful aliases:
@@ -32,6 +36,8 @@
   myhist = !git log --author=\"$(git config user.name)\" --format=%H |xargs git show --name-only --format=-------------%n%Cred%s%Creset%n%Cblue%h%Creset
 	d = difftool
 	up = "!git remote update -p; git merge --ff-only @{u}"
+	serve = !git daemon --base-path=. --export-all --reuseaddr --informative-errors --verbose
+	hub = !git daemon --base-path=. --export-all --enable=receive-pack --reuseaddr --informative-errors --verbose
 
 [core]
 	excludesfile = /Users/berryp/.gitignore_global
@@ -84,7 +90,7 @@
   helper = osxkeychain
 
 [merge]
-  tool = vimdiff
+	tool = gvimdiff
   conflictstyle = diff3
 
 [difftool "sourcetree"]
@@ -95,7 +101,12 @@
 	trustExitCode = true
 [diff]
 	tool = vimdiff
+	guitool = gvimdiff
 [difftool]
 	prompt = false
 [github]
 	user = berryp
+[rebase]
+	autosquash = true
+[grep]
+	linenumber = 1

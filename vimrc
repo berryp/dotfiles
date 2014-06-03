@@ -23,49 +23,58 @@ set nocompatible                  " We don't need vi compatibility.
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " General.
-Bundle 'tpope/vim-sensible'
-Bundle 'tpope/vim-fugitive'
-Bundle 'bling/vim-airline'
-Bundle 'sjl/gundo.vim'
-Bundle 'mkitt/tabline.vim'
-Bundle 'vim-scripts/CSApprox'
-Bundle 'embear/vim-localvimrc'
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
-Bundle 'berryp/calendar-vim'
-Bundle 'mklabs/grunt.vim'
-Bundle 'mattn/emmet-vim'
-Bundle 'neochrome/todo.vim'
+"Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-fugitive'
+Plugin 'bling/vim-airline'
+Plugin 'sjl/gundo.vim'
+Plugin 'mkitt/tabline.vim'
+Plugin 'embear/vim-localvimrc'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
+Plugin 'berryp/calendar-vim'
+Plugin 'mklabs/grunt.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'neochrome/todo.vim'
 
 " Files and buffers.
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'kien/ctrlp.vim'
-Bundle 'vim-scripts/taglist.vim'
-Bundle 'sjbach/lusty'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'kien/ctrlp.vim'
+"Plugin 'vim-scripts/taglist.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'sjbach/lusty'
+Plugin 'vim-scripts/diffchanges.vim'
+Plugin 'mkomitee/vim-gf-python'
 
 " Movement and editing.
-Bundle 'tomtom/tcomment_vim'
-Bundle 'tpope/vim-surround'
-Bundle 'tristen/vim-sparkup'
-Bundle 'msanders/snipmate.vim'
-Bundle 'nvie/vim-togglemouse'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'tpope/vim-surround'
+Plugin 'tristen/vim-sparkup'
+Plugin 'msanders/snipmate.vim'
+Plugin 'nvie/vim-togglemouse'
+Plugin 'Townk/vim-autoclose'
 
 " Syntax
-Bundle 'scrooloose/syntastic'
-Bundle 'othree/html5.vim'
-Bundle 'groenewege/vim-less'
-Bundle 'mustache/vim-mustache-handlebars'
-Bundle 'jnwhiteh/vim-golang'
+Plugin 'scrooloose/syntastic'
+Plugin 'othree/html5.vim'
+Plugin 'groenewege/vim-less'
+Plugin 'mustache/vim-mustache-handlebars'
+" Plugin 'jnwhiteh/vim-golang'
+Plugin 'othree/javascript-libraries-syntax.vim'
+"Plugin 'bradfitz/goimports'
+"Plugin 'jnwhiteh/vim-golang'
+Plugin 'fatih/vim-go'
+"Plugin 'nsf/gocode', {'rtp': 'vim/'}
+
 
 " Color schemes.
-Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'nanotech/jellybeans.vim' 
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'mhinz/vim-signify'
-Bundle 'tpope/vim-markdown'
+Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'nanotech/jellybeans.vim' 
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'mhinz/vim-signify'
+Plugin 'tpope/vim-markdown'
 
 
 " *****************************************************************************
@@ -120,11 +129,6 @@ nmap <leader>l :set list!<CR>
 "Invisible character colors
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
-
-
-" Store temporary files in central location.
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 " Auto complete.
 set wildmenu                      " Make file/command completion useful.
@@ -197,6 +201,34 @@ endif
 
 let g:calendar_diary=$HOME.'/.vim/diary'
 
+" gotags
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 " *****************************************************************************
 "  SYNTAX CONFIGURATION
@@ -206,7 +238,7 @@ let g:calendar_diary=$HOME.'/.vim/diary'
 au BufEnter *.html,*.hbs,*.json,*.jade,*.js set ts=2 sw=2 sts=2
 au BufEnter *.py set ts=4 sw=4 sts=4
 au BufEnter *.snippets set ts=4 sw=4 noexpandtab
-au BufEnter *.go set ts=4 sw=4
+au BufEnter *.go set ts=4 sw=4 noexpandtab
 
 " Map file types to syntax.
 au BufRead *.hbs,*.handlebars set ft=mustache
@@ -235,7 +267,7 @@ nnoremap ; :
 " -----------------------------------------------------------------------------
 
 map <F5> :Grunt build<CR>
-map <F8> :TlistToggle<CR>
+map <F8> :TagbarToggle<CR>
 
 " Fugitive (Git).
 map <leader>gs :Gstatus<CR>

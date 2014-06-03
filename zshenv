@@ -1,4 +1,9 @@
+export GOPATH=$HOME/work
+export GOROOT=`go env GOROOT`
+
 export PATH=/usr/local/share:/usr/local/sbin:/usr/local/bin:$HOME/bin:$HOME/.rbenv/shims:$PATH
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
 export EDITOR=vim
 
 alias wo='workon '
@@ -13,6 +18,8 @@ alias ......="cd ../../../../.."
 alias v="mvim --remote-tab-silent "
 alias _pycleanjunk='find . -name '\''*.pyc'\'' -or -name '\''*.orig'\'' -or -name '\''*.swp'\'' -or -name '\''*.swo'\'' -or -name '\''*.log'\'' -or -name Pyro_log -or -name '\''*.egg-info'\'' | xargs rm -vRf'
 
+alias updatedb='sudo /usr/libexec/locate.updatedb'
+
 alias gist='gist -c -p -s'
 
 alias flushdns="sudo dscacheutil -flushcache"
@@ -24,4 +31,5 @@ export VIRTUALENVWRAPPER_PYTHON=`which python`
 export VIRTUALENV_DISTRIBUTE=1
 export WORKON_HOME=$HOME/work/.envs
 source `which virtualenvwrapper.sh`
- 
+
+export DOCKER_HOST=tcp://127.0.0.1:4243

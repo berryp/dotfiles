@@ -98,9 +98,6 @@ setopt NO_SHARE_HISTORY
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-#export GOROOT=`go env GOROOT`
-
-
 if [[ -e $HOME/.zshrc-private ]]; then
     source $HOME/.zshrc-private
 fi

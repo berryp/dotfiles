@@ -7,7 +7,6 @@
   ci = commit
   br = branch
   co = checkout
-  lg = log -p
 
   # List tags ordered by date.
   tagbydate = for-each-ref --sort=committerdate --format='%(refname:short)' refs/tags
@@ -28,6 +27,7 @@
   lg = !"git lg1"
 
   ls = ls-files
+  la = "!git config -l | grep alias | cut -c 7-"
 
   # Other useful aliases:
   unstage = reset HEAD
@@ -110,3 +110,9 @@
 	autosquash = true
 [grep]
 	linenumber = 1
+
+[url "https://yougov.kilnhg.com/Code/Repositories/"]
+  insteadOf = "kiln://"
+[credential "kiln://"]
+  username = "13622079-d1af-4200-833f-0be251600807"
+  password = "any-password"

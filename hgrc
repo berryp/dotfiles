@@ -21,6 +21,7 @@ purge =
 prompt = ~/bin/hgprompt.py
 rebase =
 mq =
+# hgflow =
 
 [extdiff]
 cmd.interdiff = hg-interdiff

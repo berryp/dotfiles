@@ -26,33 +26,35 @@ call vundle#rc()
 Plugin 'gmarik/vundle'
 
 " General.
-"Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-sensible'
+" Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
-Plugin 'sjl/gundo.vim'
+" Plugin 'sjl/gundo.vim'
 Plugin 'mkitt/tabline.vim'
-Plugin 'embear/vim-localvimrc'
-Plugin 'mattn/webapi-vim'
-Plugin 'mattn/gist-vim'
-Plugin 'berryp/calendar-vim'
-Plugin 'mklabs/grunt.vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'neochrome/todo.vim'
+" Plugin 'embear/vim-localvimrc'
+" Plugin 'mattn/webapi-vim'
+" Plugin 'mattn/gist-vim'
+" Plugin 'berryp/calendar-vim'
+" Plugin 'mklabs/grunt.vim'
+" Plugin 'mattn/emmet-vim'
+" Plugin 'neochrome/todo.vim'
+Plugin 'rizzatti/dash.vim'
 
 " Files and buffers.
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
 "Plugin 'vim-scripts/taglist.vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'sjbach/lusty'
-Plugin 'vim-scripts/diffchanges.vim'
-Plugin 'mkomitee/vim-gf-python'
+" Plugin 'sjbach/lusty'
+" Plugin 'vim-scripts/diffchanges.vim'
+" Plugin 'mkomitee/vim-gf-python'
 
 " Movement and editing.
 Plugin 'tomtom/tcomment_vim'
-Plugin 'tpope/vim-surround'
-Plugin 'tristen/vim-sparkup'
-Plugin 'msanders/snipmate.vim'
+" Plugin 'tpope/vim-surround'
+" Plugin 'tristen/vim-sparkup'
+" Plugin 'msanders/snipmate.vim'
 Plugin 'nvie/vim-togglemouse'
 Plugin 'Townk/vim-autoclose'
 
@@ -96,7 +98,6 @@ set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
 set spelllang=en_us
 set spellfile=~/.vim/spell/en.utf-8.add
 
-
 " -----------------------------------------------------------------------------
 "  Editor
 " -----------------------------------------------------------------------------
@@ -136,7 +137,7 @@ set wildmode=list:longest
 
 set hidden                        " Don't write to disk when loosing focus.
 
-set ttyscroll=10                  " Max lines to scroll the screen.
+set scrolloff=3					  " Leave n lines above/below curser.
 set encoding=utf-8                " Set the default encoding to UTF-8.
 set nowrap                        " Disable line wrapping.
 
@@ -234,16 +235,17 @@ let g:tagbar_type_go = {
 "  SYNTAX CONFIGURATION
 " *****************************************************************************
 
-" Indentation.
-au BufEnter *.html,*.hbs,*.json,*.jade,*.js set ts=2 sw=2 sts=2
-au BufEnter *.py set ts=4 sw=4 sts=4
-au BufEnter *.snippets set ts=4 sw=4 noexpandtab
-au BufEnter *.go set ts=4 sw=4 noexpandtab
-
 " Map file types to syntax.
 au BufRead *.hbs,*.handlebars set ft=mustache
 au BufRead *.xhtml set ft=html
 au BufRead *.todo set ft=todo
+
+" Indentation.
+au BufEnter *.html,*.hbs,*.jade,*.tmpl set tabstop=2 shiftwidth=2 tabstop=2
+au BufEnter *.json,*.less,*.js set tabstop=2 shiftwidth=2 tabstop=2
+au BufEnter *.py set tabstop=4 shiftwidth=4 tabstop=4
+au BufEnter *.snippets set tabstop=4 shiftwidth=4 noexpandtab
+au BufEnter *.go set tabstop=4 shiftwidth=4 noexpandtab
 
 
 " *****************************************************************************
@@ -289,6 +291,8 @@ noremap! <leader>caL :Calendar<CR>
 " TODO toggle
 map <silent><buffer> <leader>tt :TodoToggle<cr>
 imap <silent><buffer> <leader>tt <c-o>:TodoToggle<cr>
+
+set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 
 " -----------------------------------------------------------------------------
 "  Navigation

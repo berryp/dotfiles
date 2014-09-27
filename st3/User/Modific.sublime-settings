@@ -1,0 +1,6 @@
+{
+  "vcs": [
+    {"name": "git",  "dir": ".git",  "cmd": "/usr/local/bin/git"},
+    {"name": "hg",  "dir": ".hg",  "cmd": "/usr/local/bin/hg"}
+  ]
+}

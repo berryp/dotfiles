@@ -1,0 +1,25 @@
+{
+	"channels":
+	[
+		"https://sublime.wbond.net/channel.json",
+		"https://raw.githubusercontent.com/berryp/sublime_package_control_channel/master/packages.json"
+	],
+	"installed_packages":
+	[
+		"Gist",
+		"GoSublime",
+		"LESS",
+		"LineEndings",
+		"Modific",
+		"SideBarEnhancements",
+		"SublimeCodeIntel",
+		"SublimeGit",
+		"SublimeLinter",
+		"SublimeLinter-contrib-golint",
+		"SublimeLinter-flake8",
+		"SublimeLinter-jshint",
+		"SublimeLinter-json",
+		"Theme - Soda",
+		"Tomorrow Color Schemes"
+	]
+}

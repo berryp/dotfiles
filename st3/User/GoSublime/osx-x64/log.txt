@@ -1,0 +1,16 @@
+
+** 2014-09-24 15:36:29.497869 **:
+MarGo: MarGo build failed
+cmd: `['/usr/local/opt/go/bin/go', 'build', '-v', '-x', '-o', 'gosublime.margo_r13.12.26-3_go?.exe', 'gosubli.me/margo']`
+stdout: ``
+stderr: `go: cannot find GOROOT directory: /usr/local/Cellar/go/1.2.2/libexec`
+exception: `None`
+--------------------------------
+
+** 2014-09-27 14:53:27.296811 **:
+MarGo: MarGo build failed
+cmd: `['/usr/local/opt/go/bin/go', 'build', '-v', '-x', '-o', 'gosublime.margo_r13.12.26-3_go?.exe', 'gosubli.me/margo']`
+stdout: ``
+stderr: `go: cannot find GOROOT directory: /usr/local/Cellar/go/1.2.2/libexec`
+exception: `None`
+--------------------------------

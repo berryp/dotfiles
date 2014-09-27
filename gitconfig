@@ -116,3 +116,6 @@
 [credential "kiln://"]
   username = "13622079-d1af-4200-833f-0be251600807"
   password = "any-password"
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f

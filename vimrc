@@ -26,57 +26,35 @@ call vundle#rc()
 Plugin 'gmarik/vundle'
 
 " General.
-" Plugin 'tpope/vim-sensible'
-" Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
-" Plugin 'sjl/gundo.vim'
+Plugin 'sjl/gundo.vim'
 Plugin 'mkitt/tabline.vim'
-" Plugin 'embear/vim-localvimrc'
-" Plugin 'mattn/webapi-vim'
-" Plugin 'mattn/gist-vim'
-" Plugin 'berryp/calendar-vim'
-" Plugin 'mklabs/grunt.vim'
-" Plugin 'mattn/emmet-vim'
-" Plugin 'neochrome/todo.vim'
+Plugin 'mattn/gist-vim'
 Plugin 'rizzatti/dash.vim'
+Plugin 'nanotech/jellybeans.vim'
 
 " Files and buffers.
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
-"Plugin 'vim-scripts/taglist.vim'
 Plugin 'majutsushi/tagbar'
-" Plugin 'sjbach/lusty'
-" Plugin 'vim-scripts/diffchanges.vim'
-" Plugin 'mkomitee/vim-gf-python'
 
 " Movement and editing.
 Plugin 'tomtom/tcomment_vim'
-" Plugin 'tpope/vim-surround'
-" Plugin 'tristen/vim-sparkup'
-" Plugin 'msanders/snipmate.vim'
-Plugin 'nvie/vim-togglemouse'
-Plugin 'Townk/vim-autoclose'
+Plugin 'msanders/snipmate.vim'
+"Plugin 'Townk/vim-autoclose'
 
 " Syntax
-Plugin 'scrooloose/syntastic'
-Plugin 'othree/html5.vim'
-Plugin 'groenewege/vim-less'
+"Plugin 'scrooloose/syntastic'
 Plugin 'mustache/vim-mustache-handlebars'
-" Plugin 'jnwhiteh/vim-golang'
-Plugin 'othree/javascript-libraries-syntax.vim'
-"Plugin 'bradfitz/goimports'
-"Plugin 'jnwhiteh/vim-golang'
-Plugin 'fatih/vim-go'
-"Plugin 'nsf/gocode', {'rtp': 'vim/'}
+" Collection of language packs.
+Plugin 'sheerun/vim-polyglot'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
+Plugin 'groenewege/vim-less'
 
-
-" Color schemes.
-Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'nanotech/jellybeans.vim' 
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'mhinz/vim-signify'
-Plugin 'tpope/vim-markdown'
+Plugin 'vim-scripts/greplace.vim'
 
 
 " *****************************************************************************
@@ -86,10 +64,17 @@ Plugin 'tpope/vim-markdown'
 syntax on                         " Required.
 filetype plugin indent on         " Required.
 
+" Encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+
 let mapleader=","                 " Comma is easier to get to than backslash.
 
 " This is especially useful with the ctrlp plugin.
+set wildmode=list:longest,list:full
 set wildignore+=tmp,*.so,*.swp,*.zip,node_nodules,env,*.egg,*.min.js
+set wildignore+=*.png,*.jpg,*.jpeg,*.gif,*.webp
 set wildignore+=*.egg-info,.*,*.pyc,*.tar,*.gz,*.log,*.fla,*.swf
 
 set t_Co=256                      " Use 256 colors where supported.
@@ -106,6 +91,7 @@ set spellfile=~/.vim/spell/en.utf-8.add
 colorscheme jellybeans
 
 set number                        " Show line numbers.
+set ruler
 set relativenumber                " Line numbers relative to current position.
 set cursorline                    " Highlight current line.
 set modelines=0                   " Don't parse modelines.
@@ -119,8 +105,17 @@ set shortmess=atI                 " Stifle many interruptive prompts.
 set backspace=indent,eol,start    " Intuitive backspacing in insert mode.
 set virtualedit=block             " Useful for column select.
 
+set nobackup
+set noswapfile
+
 set laststatus=2                  " Always show the status line.
 
+
+set fileformats=unix,dos,mac
+set backspace=indent,eol,start
+set showcmd
+
+set shell=/bin/zsh
 set shellcmdflag=-c               " Allow the shell to be non-interactive.
 
 " Make tabs and trailing spaces visible when requested.
@@ -138,7 +133,12 @@ set wildmode=list:longest
 set hidden                        " Don't write to disk when loosing focus.
 
 set scrolloff=3					  " Leave n lines above/below curser.
-set encoding=utf-8                " Set the default encoding to UTF-8.
+
+" Encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+
 set nowrap                        " Disable line wrapping.
 
 set colorcolumn=80                " Show a column highlight after 80 characters.
@@ -230,6 +230,21 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
+
+set tags+=~/.vim/systags
+
+" go to defn of tag under the cursor.
+fun! MatchCaseTag()
+    let ic = &ic
+    set noic
+    try
+        exe 'tjump ' . expand('<cword>')
+    finally
+       let &ic = ic
+    endtry
+endfun
+nnoremap <silent> <c-]> :call MatchCaseTag()<CR>
+
 
 " *****************************************************************************
 "  SYNTAX CONFIGURATION
@@ -324,10 +339,19 @@ nnoremap <C-y> 3<C-y>
 
 com! FormatJSON %!python -m json.tool
 
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
 
 " *****************************************************************************
 "  EVERYTHING ELSE
 " *****************************************************************************
+
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 " Load private settings.
 if filereadable(expand('~/.vimrc.private'))

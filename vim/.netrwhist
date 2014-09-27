@@ -1,0 +1,4 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/Users/berryp/work/hg/cherrypy-baton-tools/baton_tools'
+let g:netrw_dirhist_2='/usr/local/Cellar/python/2.7.8/bin'

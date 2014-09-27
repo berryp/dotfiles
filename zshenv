@@ -4,8 +4,6 @@ export PATH=/usr/local/share:/usr/local/sbin:/usr/local/bin:$HOME/bin:$HOME/.rbe
 export PATH=/usr/local/opt/go/libexec/bin:$PATH
 export PATH=$GOPATH/bin:$PATH
 
-export EDITOR=vim
-
 alias wo='workon '
 
 # cd aliases.
@@ -38,3 +36,15 @@ source `which virtualenvwrapper.sh`
 
 export DOCKER_HOST=tcp://127.0.0.1:4243
 GOROOT=/usr/local/opt/go/libexec
+
+alias goapp=~/google-cloud-sdk/platform/google_appengine/goapp
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/berryp/google-cloud-sdk/path.zsh.inc'
+
+alias s='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+
+export EDITOR=/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl
+
+# export GIT_EDITOR="vim --wait --new-window"

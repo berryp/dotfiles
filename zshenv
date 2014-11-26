@@ -2,7 +2,7 @@ export GOPATH=$HOME/work
 
 export PATH=/usr/local/share:/usr/local/sbin:/usr/local/bin:$HOME/bin:$HOME/.rbenv/shims:$PATH
 export PATH=/usr/local/opt/go/libexec/bin:$PATH
-export PATH=$GOPATH/bin:$PATH
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 alias wo='workon '
 
@@ -45,6 +45,6 @@ source '/Users/berryp/google-cloud-sdk/path.zsh.inc'
 alias s='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
-export EDITOR=/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl
+export GIT_EDITOR="vim --wait --new-window"
 
-# export GIT_EDITOR="vim --wait --new-window"
+export GPG_TTY=`tty`

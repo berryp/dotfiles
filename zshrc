@@ -101,3 +101,8 @@ setopt NO_SHARE_HISTORY
 if [[ -e $HOME/.zshrc-private ]]; then
     source $HOME/.zshrc-private
 fi
+
+alias unloadkeyboard="sudo kextunload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext"
+alias loadkeyboard="sudo kextload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext"
+
+alias fixhostname='screen -dRS hostname sudo watch -n 0.1 hostname berryp-macbook.local'

@@ -21,8 +21,9 @@ set nocompatible                  " We don't need vi compatibility.
 
 " Setup
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
 Plugin 'gmarik/vundle'
 
 " General.
@@ -56,6 +57,7 @@ Plugin 'groenewege/vim-less'
 
 Plugin 'vim-scripts/greplace.vim'
 
+call vundle#end()
 
 " *****************************************************************************
 "  GLOBAL CONFIGURATION

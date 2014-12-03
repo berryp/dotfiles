@@ -117,7 +117,6 @@ set fileformats=unix,dos,mac
 set backspace=indent,eol,start
 set showcmd
 
-set shell=/bin/zsh
 set shellcmdflag=-c               " Allow the shell to be non-interactive.
 
 " Make tabs and trailing spaces visible when requested.

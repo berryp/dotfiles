@@ -4,17 +4,22 @@
 		"https://sublime.wbond.net/channel.json",
 		"https://raw.githubusercontent.com/berryp/sublime_package_control_channel/master/packages.json"
 	],
+	"in_process_packages":
+	[
+	],
 	"installed_packages":
 	[
 		"Base16 Color Schemes",
 		"Color Highlighter",
 		"Gist",
 		"GoImports",
+		"Google Spell Check",
 		"GoSublime",
 		"Handlebars",
 		"LESS",
 		"LineEndings",
 		"Modific",
+		"Package Control",
 		"SideBarEnhancements",
 		"SublimeCodeIntel",
 		"SublimeGit",
@@ -24,6 +29,7 @@
 		"SublimeLinter-jshint",
 		"SublimeLinter-json",
 		"Theme - Soda",
+		"Theme - Soda SolarizedDark",
 		"Tomorrow Color Schemes"
 	]
 }

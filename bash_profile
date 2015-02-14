@@ -22,8 +22,6 @@ alias serve='thin -R $HOME/www/serve.ru start'
 
 alias gist="jist -o -c"
 
-alias git=hub
-
 alias go='GOPATH=$PWD go'
 
 # Enable aliases to be sudo’ed
@@ -61,12 +59,6 @@ export HISTCONTROL=ignoreboth
 export HISTSIZE=10000
 export BLOCKSIZE=K
 
-### EC2
-export JAVA_HOME="$(/usr/libexec/java_home)"
-export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)"
-export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
-export EC2_HOME="`brew --prefix ec2-api-tools`"
-export REGION="us-west-1"
 
 ### Tool defaults
 

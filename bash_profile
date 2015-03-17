@@ -34,9 +34,7 @@ alias c='pygmentize -O style=monokai -f console256 -g'
 export PIP_DOWNLOAD_CACHE=$HOME/Library/Caches/pip-downloads
 export MACOSX_DEPLOYMENT_TARGET=10.9
 export CFLAGS=-I/brew/include
-export JAVA_HOME=$(/usr/libexec/java_home)
-export VELOCIRAPTOR_URL=https://deploy.yougov.net
-export HGEDITOR=vim
+export JAVA_HOME=/Library/Java/Home # $(/usr/libexec/java_home)
 
 export PYTHONPATH="/usr/local/lib/python2.7/site-packages:$PYTHONPATH"
 
@@ -133,7 +131,10 @@ dirty_symbol="✳"
 function vcs_prompt() {
   vcprompt -f "[%n:%b%m%u]"
 }
-export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(vcs_prompt) ]] && echo \" on \")\[$PURPLE\]\$(vcs_prompt)\[$WHITE\]\n$command_symbol\[$RESET\] "
+
+# export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(vcs_prompt) ]] && echo \" on \")\[$PURPLE\]\$(vcs_prompt)\[$WHITE\]\n$command_symbol\[$RESET\] "
+export PS1="\[$GREEN\]\w\[$WHITE\]\$([[ -n \$(vcs_prompt) ]] && echo \" on \")\[$PURPLE\]\$(vcs_prompt)\[$WHITE\] $command_symbol\[$RESET\] "
+# export PS1="\[$GREEN\]\w\[$WHITE\] $ \[$RESET\]"
 export PS2="\[$ORANGE\]→ \[$RESET\]"
 
 ### Misc

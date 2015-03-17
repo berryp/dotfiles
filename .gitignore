@@ -2,3 +2,6 @@
 bundle/
 backup
 offlineimap/
+profile
+Gist.sublime-settings
+Package\ Control.sublime-settings

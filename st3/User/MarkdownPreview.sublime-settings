@@ -1,0 +1,4 @@
+{
+  "enabled_parsers": ["github"],
+  "path_tempfile": "/tmp/rendered-markdown"
+}

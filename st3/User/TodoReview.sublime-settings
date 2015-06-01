@@ -1,0 +1,12 @@
+{
+  "exclude_folders": [
+    "*.git*",
+    "*node_modules*",
+    "*components*",
+    "dist"
+  ],
+  "exclude_files": [
+    "*.sublime-workspace",
+    "*.sublime-project"
+  ]
+}

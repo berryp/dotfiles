@@ -7,26 +7,11 @@
         "gutter_theme_excludes": [],
         "lint_mode": "background",
         "linters": {
-            "flake8": {
+            "jscs": {
                 "@disable": false,
                 "args": [],
-                "builtins": "",
                 "excludes": [],
-                "ignore": "E126,E128",
-                "jobs": "1",
-                "max-complexity": -1,
-                "max-line-length": null,
-                "select": ""
-            },
-            "golint": {
-                "@disable": false,
-                "args": [],
-                "excludes": []
-            },
-            "htmltidy": {
-                "@disable": false,
-                "args": [],
-                "excludes": []
+                "args": "--preset=google"
             },
             "jshint": {
                 "@disable": false,
@@ -42,11 +27,10 @@
         },
         "mark_style": "outline",
         "no_column_highlights_line": false,
+        "passive_warnings": false,
         "paths": {
             "linux": [],
-            "osx": [
-                "/usr/local/bin"
-            ],
+            "osx": [],
             "windows": []
         },
         "python_paths": {

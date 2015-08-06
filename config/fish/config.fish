@@ -1,3 +1,9 @@
+eval sh $HOME/.config/base16-shell/base16-default.dark.sh
+set fish_user_paths /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin $HOME/work/bin
+set -x MANPATH /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/help/man /usr/local/share/man /usr/share/man /opt/x11/share/man
+
+set -x GOPATH $HOME/work
+
 function su
   /bin/su --shell=/usr/bin/fish $argv
 end

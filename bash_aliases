@@ -12,6 +12,8 @@ alias lsd='ls -lF ${colorflag} | grep "^d"' # only directories
 
 alias activate='. env/bin/activate'
 
+# alias vim="/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim"
+
 # Git
 # You must install Git first - ""
 alias gs='git status'
@@ -31,8 +33,6 @@ alias gist="jist -o -c"
 
 alias yghammer='killall -9 postgres ; killall -9 mongod ; killall -9 python'
 
-alias git=hub
-
 alias go='GOPATH=$PWD go'
 
 # Quicker navigation
@@ -47,3 +47,5 @@ alias sudo='sudo '
 # Colored up cat!
 # You must install Pygments first - "sudo easy_install Pygments"
 alias c='pygmentize -O style=monokai -f console256 -g'
+
+alias timecurl='curl -o /dev/null -s -w "%{time_total}\\n" '

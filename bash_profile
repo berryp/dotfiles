@@ -10,7 +10,11 @@ alias l="ls -lF ${colorflag}" # all files, in long format
 alias la="ls -laF ${colorflag}" # all files inc dotfiles, in long format
 alias lsd='ls -lF ${colorflag} | grep "^d"' # only directories
 
+alias v="mvim --remote-tab-silent "
+
 alias activate='. env/bin/activate'
+
+alias _pycleanjunk='find . -name '\''*.pyc'\'' -or -name '\''*.orig'\'' -or -name '\''*.swp'\'' -or -name '\''*.swo'\'' -or -name '\''*.log'\'' -or -name Pyro_log -or -name '\''*.egg-info'\'' | xargs rm -vRf'
 
 # -n line numbers, -G basic regex, -I ignore binary, -i ignore case.
 # -B lines before, -A lines after , -C lines before and after.
@@ -18,11 +22,9 @@ alias grep='grep --color=auto -n --exclude="*.orig,*.swp,env,.hg,.git" -I'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-alias serve='thin -R $HOME/www/serve.ru start'
+alias gist='gist -c -p -s'
 
-alias gist="jist -o -c"
-
-alias go='GOPATH=$PWD go'
+alias go='GOPATH=$HOME/work'
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
@@ -34,9 +36,9 @@ alias c='pygmentize -O style=monokai -f console256 -g'
 export PIP_DOWNLOAD_CACHE=$HOME/Library/Caches/pip-downloads
 export MACOSX_DEPLOYMENT_TARGET=10.9
 export CFLAGS=-I/brew/include
-export JAVA_HOME=/Library/Java/Home # $(/usr/libexec/java_home)
-
-export PYTHONPATH="/usr/local/lib/python2.7/site-packages:$PYTHONPATH"
+# export JAVA_HOME=/Library/Java/Home # $(/usr/libexec/java_home)
+export JAVA_HOME=`/usr/libexec/java_home -v 1.6.0_65-b14-466.1`
+export JVM_ARGS="-Xmx1024m -XX:MaxPermSize=512m"
 
 # Android development
 export ANDROID_HOME=/usr/local/opt/android-sdk
@@ -45,10 +47,10 @@ export ANDROIDAPI=22
 
 export VIRTUALENV_DISTRIBUTE=1
 
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=$HOME/bin:/usr/local/share:$PATH
-export PATH=/Users/berryp/projects/incubator-cordova-android/bin:$PATH
-export PATH=/Users/berryp/node_modules/.bin:$PATH
+export PATH=/usr/local/share:/usr/local/sbin:/usr/local/bin:$HOME/bin:$HOME/.rbenv/shims:$PATH
+export PATH=/usr/local/opt/go/libexec/bin:$PATH
+export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/work/bin:$PATH
+
 
 export EDITOR=vim
 export LESS=gi
@@ -57,6 +59,8 @@ export HISTCONTROL=ignoreboth
 export HISTSIZE=10000
 export BLOCKSIZE=K
 
+# vim needs this to be executed.
+sh $HOME/.config/base16-shell/base16-default.dark.sh
 
 ### Tool defaults
 
@@ -69,6 +73,10 @@ export GREP_OPTIONS
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
   . $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
+fi
+
+if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
+  alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 fi
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
@@ -132,8 +140,9 @@ function vcs_prompt() {
   vcprompt -f "[%n:%b%m%u]"
 }
 
-# export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(vcs_prompt) ]] && echo \" on \")\[$PURPLE\]\$(vcs_prompt)\[$WHITE\]\n$command_symbol\[$RESET\] "
-export PS1="\[$GREEN\]\w\[$WHITE\]\$([[ -n \$(vcs_prompt) ]] && echo \" on \")\[$PURPLE\]\$(vcs_prompt)\[$WHITE\] $command_symbol\[$RESET\] "
+#export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(vcs_prompt) ]] && echo \" on \")\[$PURPLE\]\$(vcs_prompt)\[$WHITE\]\n$command_symbol\[$RESET\] "
+export PS1="\[${BOLD}\]\[${WHITE}\]\[${GREEN}\]\w\[$WHITE\]\$([[ -n \$(vcs_prompt) ]] && echo \" on \")\[$PURPLE\]\$(vcs_prompt)\[$WHITE\]\n$command_symbol\[$RESET\] "
+#export PS1="\[$GREEN\]\w\[$WHITE\]\$([[ -n \$(vcs_prompt) ]] && echo \" on \")\[$PURPLE\]\$(vcs_prompt)\[$WHITE\] $command_symbol\[$RESET\] "
 # export PS1="\[$GREEN\]\w\[$WHITE\] $ \[$RESET\]"
 export PS2="\[$ORANGE\]→ \[$RESET\]"
 

@@ -24,34 +24,43 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 " General.
-Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
 Plugin 'sjl/gundo.vim'
 Plugin 'mkitt/tabline.vim'
 Plugin 'mattn/gist-vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'chriskempson/base16-vim'
+Plugin 'fatih/vim-go'
+Plugin 'itchyny/calendar.vim'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-notes'
+Plugin 'mattn/webapi-vim'
+Plugin 'lervag/vimtex'
 
 " Files and buffers.
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/nerdtree'
 
 " Movement and editing.
 Plugin 'tomtom/tcomment_vim'
 Plugin 'msanders/snipmate.vim'
+Plugin 'tpope/vim-surround'
 "Plugin 'Townk/vim-autoclose'
 
 " Syntax
-"Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 Plugin 'mustache/vim-mustache-handlebars'
 " Collection of language packs.
 Plugin 'sheerun/vim-polyglot'
-Plugin 'davidhalter/jedi-vim'
+" Plugin 'davidhalter/jedi-vim'
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
 Plugin 'groenewege/vim-less'
 
@@ -75,12 +84,14 @@ let mapleader=","                 " Comma is easier to get to than backslash.
 
 " This is especially useful with the ctrlp plugin.
 set wildmode=list:longest,list:full
-set wildignore+=tmp,*.so,*.swp,*.zip,node_nodules,env,*.egg,*.min.js
+set wildignore+=tmp,*.so,*.swp,*.zip,node_nodules,bower_components,env,*.egg,*.min.js,pkg,github.com
 set wildignore+=*.png,*.jpg,*.jpeg,*.gif,*.webp
 set wildignore+=*.egg-info,.*,*.pyc,*.tar,*.gz,*.log,*.fla,*.swf
 
 set t_Co=256                      " Use 256 colors where supported.
-set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
+let base16colorspace=256
+set guifont=Inconsolata-g:h12
+"set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
 
 set spelllang=en_us
 set spellfile=~/.vim/spell/en.utf-8.add
@@ -90,11 +101,13 @@ set spellfile=~/.vim/spell/en.utf-8.add
 " -----------------------------------------------------------------------------
 
 " colorscheme Tomorrow-Night
-colorscheme jellybeans
+"colorscheme jellybeans
+colorscheme base16-default
+set background=dark
 
 set number                        " Show line numbers.
 set ruler
-set relativenumber                " Line numbers relative to current position.
+" set relativenumber                " Line numbers relative to current position.
 set cursorline                    " Highlight current line.
 set modelines=0                   " Don't parse modelines.
 set history=1000                  " Sensible history.
@@ -188,10 +201,10 @@ let g:airline_symbols.whitespace = 'Ξ'
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = '--ignore="E126,E127,E128,W124"'
 
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['jscs']
 
 let g:ctrlp_working_path_mode = 0 " Use working path mvim was opened from.
-let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|node_modules|env|tmp|build)$'
+let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|node_modules|bower_components|env|tmp|build)$'
 
 " Don't ask to load local vimrc.
 " TODO: This doesn't seem to be working.
@@ -202,6 +215,9 @@ else
 endif
 
 let g:calendar_diary=$HOME.'/.vim/diary'
+
+let g:tagbar_autofocus = 1
+let g:tagbar_autoclose = 1
 
 " gotags
 let g:tagbar_type_go = {
@@ -231,6 +247,8 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
+
+let g:notes_directories = ['~/Google\ Drive/Notes']
 
 set tags+=~/.vim/systags
 
@@ -287,6 +305,8 @@ nnoremap ; :
 map <F5> :Grunt build<CR>
 map <F8> :TagbarToggle<CR>
 
+map <C-n> :NERDTreeToggle<CR>
+
 " Fugitive (Git).
 map <leader>gs :Gstatus<CR>
 map <leader>gd :Gdiff<CR>
@@ -301,8 +321,8 @@ set pastetoggle=<F2>              " Switch paste states on F2.
 
 nmap <silent> ,/ :nohlsearch<CR>  " Shortcut to clearing search highlights.
 
-noremap! <leader>cal :CalendarH<CR>
-noremap! <leader>caL :Calendar<CR>
+let g:calendar_google_calendar = 1
+
 
 " TODO toggle
 map <silent><buffer> <leader>tt :TodoToggle<cr>
@@ -353,6 +373,20 @@ endfun
 " *****************************************************************************
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+" Better splits
+"set winheight=30
+"set winminheight=5
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+set splitbelow
+set splitright
+
+set tags=./tags,tags;$HOME
 
 " Load private settings.
 if filereadable(expand('~/.vimrc.private'))

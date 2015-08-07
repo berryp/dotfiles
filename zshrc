@@ -51,6 +51,11 @@ plugins=()
 
 source $ZSH/oh-my-zsh.sh
 
+# vim needs this to be executed.
+sh $HOME/.dotfiles/config/base16-shell/base16-default.dark.sh
+
+[[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
+
 # User configuration
 export PYTHONDONTWRITEBYTECODE=1
 

@@ -330,6 +330,11 @@ imap <silent><buffer> <leader>tt <c-o>:TodoToggle<cr>
 
 set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 " -----------------------------------------------------------------------------
 "  Navigation
 " -----------------------------------------------------------------------------

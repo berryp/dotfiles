@@ -186,7 +186,7 @@ set expandtab                     " Expand tags to spaces on tab key.
 " so replace them with regular Unicode characters.
 " TODO: Figure out why patched fonts are not rendering, and fix.
 
-let g:airline_powerline_fonts = 0
+" let g:airline_powerline_fonts = 1
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}

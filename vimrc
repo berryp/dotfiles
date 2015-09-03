@@ -42,6 +42,8 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-notes'
 Plugin 'mattn/webapi-vim'
 Plugin 'lervag/vimtex'
+" Plugin 'Shougo/neocomplete.vim'
+Plugin 'vim-scripts/taglist.vim'
 
 " Files and buffers.
 Plugin 'Lokaltog/vim-easymotion'
@@ -84,13 +86,14 @@ let mapleader=","                 " Comma is easier to get to than backslash.
 
 " This is especially useful with the ctrlp plugin.
 set wildmode=list:longest,list:full
-set wildignore+=tmp,*.so,*.swp,*.zip,node_nodules,bower_components,env,*.egg,*.min.js,pkg,github.com
+set wildignore+=tmp,*.so,*.swp,*.zip,*.egg,*.min.js,pkg,github.com
 set wildignore+=*.png,*.jpg,*.jpeg,*.gif,*.webp
 set wildignore+=*.egg-info,.*,*.pyc,*.tar,*.gz,*.log,*.fla,*.swf
+set wildignore+=virtualenv,env*,node_modules,bower_components,target,build
 
 set t_Co=256                      " Use 256 colors where supported.
 let base16colorspace=256
-set guifont=Inconsolata-g:h12
+set guifont=Inconsolata-g\ for\ Powerline:h12
 "set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
 
 set spelllang=en_us
@@ -181,6 +184,18 @@ set expandtab                     " Expand tags to spaces on tab key.
 " *****************************************************************************
 "  PLUGIN CONFIGURATION
 " *****************************************************************************
+
+" Go related mappings
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>r <Plug>(go-run)
+au FileType go nmap <Leader>b <Plug>(go-build)
+au FileType go nmap <Leader>t <Plug>(go-test)
+au FileType go nmap gd <Plug>(go-def-tab)
+
+" go language
+let s:tlist_def_go_settings = 'go;g:enum;s:struct;u:union;t:type;' .
+                           \ 'v:variable;f:function'
 
 " Powerline patched fonts are not rendering the symbols correctly in iTerm2
 " so replace them with regular Unicode characters.
@@ -397,4 +412,9 @@ set tags=./tags,tags;$HOME
 if filereadable(expand('~/.vimrc.private'))
   source ~/.vimrc.private
 endif
+
+hi TabLine      ctermfg=Black  ctermbg=DarkGray     cterm=NONE
+hi TabLineFill  ctermfg=Black  ctermbg=DarkGray     cterm=NONE
+hi TabLineSel   ctermfg=White  ctermbg=Gray  cterm=NONE
+hi LineNr       ctermbg=NONE  cterm=NONE
 

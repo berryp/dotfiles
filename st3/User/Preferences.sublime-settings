@@ -3,7 +3,7 @@
 	"auto_complete": true,
 	"auto_complete_commit_on_tab": true,
 	"auto_complete_selector": "source - comment, meta.tag - punctuation.definition.tag.begin",
-	"color_scheme": "Packages/User/SublimeLinter/Afterglow-twilight (SL).tmTheme",
+	"color_scheme": "Packages/User/SublimeLinter/base16-default.dark (SL).tmTheme",
 	"default_line_ending": "unix",
 	"detect_indentation": false,
 	"draw_white_space": "all",
@@ -37,20 +37,17 @@
 		"node_modules",
 		"bower_components"
 	],
-	"font_face": "Inconsolata-g",
+	"font_face": "Inconsolata-g for Powerline",
 	"font_size": 12,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"Vintage",
-		"Autoprefixer",
 		"Handlebars",
-		"Origami",
-		"PlainTasks",
-		"Pretty JSON",
+		"Autoprefixer",
 		"SideBarEnhancements",
-		"Theme - Afterglow"
+		"PlainTasks",
+		"Pretty JSON"
 	],
 	"indent_guide_options":
 	[
@@ -71,7 +68,7 @@
 	"tab_size": 2,
 	"tabs_padding_medium": true,
 	"tabs_small": true,
-	"theme": "Default.sublime-theme",
+	"theme": "Base16 Color Schemes/base16-default.dark.tmTheme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"wide_caret": true,

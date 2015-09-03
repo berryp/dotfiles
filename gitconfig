@@ -40,7 +40,7 @@
 	hub = !git daemon --base-path=. --export-all --enable=receive-pack --reuseaddr --informative-errors --verbose
 
 [core]
-	excludesfile = /Users/berryp/.gitignore_global
+	excludesfile = /Users/b.phillips/.gitignore_global
 	pager = less -+$LESS -R
 	editor = vim
 

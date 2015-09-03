@@ -16,7 +16,7 @@ dotfiles = [
   'gvimrc',
    'zshrc',
    'zshenv',
-# 'config'
+   'tmux.conf'
 ]
 
 osx_defaults_commands = [

@@ -21,54 +21,59 @@ set nocompatible                  " We don't need vi compatibility.
 
 " Setup
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
+" Plugin 'gmarik/Vundle.vim'
+
+call plug#begin('~/.vim/plugged')
 
 " General.
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'bling/vim-airline'
-Plugin 'sjl/gundo.vim'
-Plugin 'mkitt/tabline.vim'
-Plugin 'mattn/gist-vim'
-Plugin 'rizzatti/dash.vim'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'chriskempson/base16-vim'
-Plugin 'fatih/vim-go'
-Plugin 'itchyny/calendar.vim'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-notes'
-Plugin 'mattn/webapi-vim'
-Plugin 'lervag/vimtex'
-" Plugin 'Shougo/neocomplete.vim'
-Plugin 'vim-scripts/taglist.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'bling/vim-airline'
+Plug 'sjl/gundo.vim'
+Plug 'mkitt/tabline.vim'
+Plug 'mattn/gist-vim'
+Plug 'rizzatti/dash.vim'
+Plug 'nanotech/jellybeans.vim'
+Plug 'chriskempson/base16-vim'
+Plug 'fatih/vim-go'
+Plug 'itchyny/calendar.vim'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
+Plug 'mattn/webapi-vim'
+Plug 'lervag/vimtex'
+" Plug 'Shougo/neocomplete.vim'
+Plug 'vim-scripts/taglist.vim'
 
 " Files and buffers.
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'kien/ctrlp.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/nerdtree'
+Plug 'Lokaltog/vim-easymotion'
+" Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'majutsushi/tagbar'
+Plug 'scrooloose/nerdtree'
 
 " Movement and editing.
-Plugin 'tomtom/tcomment_vim'
-Plugin 'msanders/snipmate.vim'
-Plugin 'tpope/vim-surround'
-"Plugin 'Townk/vim-autoclose'
+Plug 'tomtom/tcomment_vim'
+Plug 'msanders/snipmate.vim'
+Plug 'tpope/vim-surround'
+"Plug 'Townk/vim-autoclose'
 
 " Syntax
-Plugin 'scrooloose/syntastic'
-Plugin 'mustache/vim-mustache-handlebars'
+Plug 'scrooloose/syntastic'
+Plug 'mustache/vim-mustache-handlebars'
 " Collection of language packs.
-Plugin 'sheerun/vim-polyglot'
-" Plugin 'davidhalter/jedi-vim'
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
-Plugin 'groenewege/vim-less'
+Plug 'sheerun/vim-polyglot'
+" Plug 'davidhalter/jedi-vim'
+Plug 'nsf/gocode', {'rtp': 'vim/'}
+Plug 'groenewege/vim-less'
 
-Plugin 'vim-scripts/greplace.vim'
+Plug 'vim-scripts/greplace.vim'
 
-call vundle#end()
+" call vundle#end()
+
+call plug#end()
 
 " *****************************************************************************
 "  GLOBAL CONFIGURATION
@@ -105,8 +110,8 @@ set spellfile=~/.vim/spell/en.utf-8.add
 
 " colorscheme Tomorrow-Night
 "colorscheme jellybeans
-colorscheme base16-default
 set background=dark
+colorscheme base16-default
 
 set number                        " Show line numbers.
 set ruler
@@ -291,7 +296,8 @@ au BufRead *.todo set ft=todo
 
 " Indentation.
 au BufEnter *.html,*.hbs,*.jade,*.tmpl set tabstop=2 shiftwidth=2 tabstop=2
-au BufEnter *.json,*.less,*.js set tabstop=2 shiftwidth=2 tabstop=2
+au BufEnter *.less,*.js set tabstop=4 shiftwidth=4 tabstop=4
+au BufEnter *.json set tabstop=4 shiftwidth=4 tabstop=4
 au BufEnter *.py set tabstop=4 shiftwidth=4 tabstop=4
 au BufEnter *.snippets set tabstop=4 shiftwidth=4 noexpandtab
 au BufEnter *.go set tabstop=4 shiftwidth=4 noexpandtab
@@ -329,6 +335,8 @@ map <leader>gc :Gcommit<CR>
 map <leader>gb :Gblame<CR>
 map <leader>gl :Glog<CR>
 map <leader>gp :Gpush<CR>
+
+map <C-p> :FZF<CR>
 
 nmap <silent> <leader>s :set spell!<CR> " Toggle spellcheck.
 

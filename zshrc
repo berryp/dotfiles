@@ -12,7 +12,8 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew common-aliases git-extras node npm osx)
+# plugins=(git brew common-aliases git-extras node npm osx)
+plugins=()
 
 source $ZSH/oh-my-zsh.sh
 
@@ -30,7 +31,7 @@ SAVEHIST=10000
 setopt APPEND_HISTORY
 
 # ls colors regardless of OS.
-ls --color -d . &>/dev/null 2>&1 && alias ls='ls --color=if-tty' || alias ls='ls -G'
+# ls --color -d . &>/dev/null 2>&1 && alias ls='ls --color=if-tty' || alias ls='ls -G'
 
 # Completion.
 setopt auto_menu         # show completion menu on succesive tab press
@@ -75,4 +76,6 @@ fi
 alias unloadkeyboard="sudo kextunload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext"
 alias loadkeyboard="sudo kextload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext"
 
-alias fixhostname='screen -dRS hostname sudo watch -n 0.1 hostname berryp-macbook.local'
+# eval "$(docker-machine env dev)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

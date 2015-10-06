@@ -12,8 +12,9 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
+alias vim="`which nvim`"
+
 # alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
-alias v="mvim --remote-tab-silent "
 alias _pycleanjunk='find . -name '\''*.pyc'\'' -or -name '\''*.orig'\'' -or -name '\''*.swp'\'' -or -name '\''*.swo'\'' -or -name '\''*.log'\'' -or -name Pyro_log -or -name '\''*.egg-info'\'' | xargs rm -vRf'
 
 alias updatedb='sudo /usr/libexec/locate.updatedb'
@@ -26,6 +27,8 @@ alias flushdns="sudo dscacheutil -flushcache"
 alias upcheese='python setup.py register -r cheese sdist upload -r cheese'
 alias t='todo.sh '
 alias activate='. env/bin/activate'
+
+alias docker-clean='docker rm `docker ps --no-trunc -aq` && docker images -q --filter "dangling=true" | xargs docker rmi'
 
 export GPG_TTY=`tty`
 

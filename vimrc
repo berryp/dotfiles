@@ -95,6 +95,7 @@ set wildignore+=tmp,*.so,*.swp,*.zip,*.egg,*.min.js,pkg,github.com
 set wildignore+=*.png,*.jpg,*.jpeg,*.gif,*.webp
 set wildignore+=*.egg-info,.*,*.pyc,*.tar,*.gz,*.log,*.fla,*.swf
 set wildignore+=virtualenv,env*,node_modules,bower_components,target,build
+set wildignore+=Godeps/_workspace/*
 
 set t_Co=256                      " Use 256 colors where supported.
 let base16colorspace=256
@@ -103,6 +104,8 @@ set guifont=Inconsolata-g\ for\ Powerline:h12
 
 set spelllang=en_us
 set spellfile=~/.vim/spell/en.utf-8.add
+
+set clipboard+=unnamedplus
 
 " -----------------------------------------------------------------------------
 "  Editor
@@ -293,14 +296,14 @@ nnoremap <silent> <c-]> :call MatchCaseTag()<CR>
 au BufRead *.hbs,*.handlebars set ft=mustache
 au BufRead *.xhtml set ft=html
 au BufRead *.todo set ft=todo
-
+au BufEnter *.schema setf json
+"
 " Indentation.
 au BufEnter *.html,*.hbs,*.jade,*.tmpl set tabstop=2 shiftwidth=2 tabstop=2
-au BufEnter *.less,*.js set tabstop=4 shiftwidth=4 tabstop=4
-au BufEnter *.json set tabstop=4 shiftwidth=4 tabstop=4
+au BufEnter *.json set tabstop=2 shiftwidth=2 tabstop=2
 au BufEnter *.py set tabstop=4 shiftwidth=4 tabstop=4
 au BufEnter *.snippets set tabstop=4 shiftwidth=4 noexpandtab
-au BufEnter *.go set tabstop=4 shiftwidth=4 noexpandtab
+au BufEnter *.go set tabstop=4 shiftwidth=4 noexpandtab colorcolumn=
 
 
 " *****************************************************************************

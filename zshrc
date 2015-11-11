@@ -78,4 +78,6 @@ alias loadkeyboard="sudo kextload /System/Library/Extensions/AppleUSBTopCase.kex
 
 # eval "$(docker-machine env dev)"
 
+FZF_DEFAULT_OPTS="--extended --cycle"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+alias g="ag --nobreak --nonumbers --noheading . | fzf"

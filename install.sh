@@ -6,10 +6,11 @@ mkdir -p tmp
 
 echo "--- Linking dotfiles ---"
 for file in $files; do
-    echo "Backing up $file."
-    mv ~/$file tmp/
-    echo "Linking $file."
-    ln -s ~/.dotfiles/$file ~/$file
+    f=${file#./}
+    echo "Backing up $f."
+    mv ~/$f tmp/
+    echo "Linking $f."
+    ln -s ~/.dotfiles/$f ~/$f
 done
 
 echo "--- Installing OhMyZSH ---"
@@ -19,3 +20,5 @@ echo "--- Installing vim-plug ---"
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+echo "--- Installing tmux plugin manager ---"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm

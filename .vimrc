@@ -1,5 +1,6 @@
 set nocompatible                  " We don't need vi compatibility.
 
+set shell=/usr/bin/zsh
 
 " *****************************************************************************
 "  REFERENCE MATERIAL

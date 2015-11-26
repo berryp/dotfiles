@@ -1,1 +1,0 @@
-/home/berryp/.dotfiles/./.zshenv

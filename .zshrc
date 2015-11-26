@@ -1,7 +1,5 @@
-OS=`uname -s`
-
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+# Path to your oh-my-zsh installation.
+  export ZSH=/home/berryp/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -9,54 +7,60 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell"
 
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-# plugins=(git brew common-aliases git-extras node npm osx)
-plugins=()
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
-# vim needs this to be executed.
-sh $HOME/.dotfiles/config/base16-shell/base16-default.dark.sh
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
-[[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
-
-# User configuration
-export PYTHONDONTWRITEBYTECODE=1
-
-HISTFILE=$HOME/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-setopt APPEND_HISTORY
-
-# ls colors regardless of OS.
-# ls --color -d . &>/dev/null 2>&1 && alias ls='ls --color=if-tty' || alias ls='ls -G'
-
-# Completion.
-setopt auto_menu         # show completion menu on succesive tab press
-setopt complete_in_word
-setopt always_to_end
-setopt  globcomplete
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
-zstyle ':completion:*:*:*:*:processes' command "ps -u `whoami` -o pid,user,comm -w -w"
-
-# disable named-directories autocompletion
-zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
-
-zstyle ':completion:*' completer _complete _match _approximate
-zstyle ':completion:*:functions' ignored-patterns '_*'
-zstyle ':completion:*:match:*' original only
-zstyle ':completion:*:approximate:*' max-errors 2 numeric
-zstyle -e ':completion:*:approximate:*'  max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)'
-
-setopt NO_SHARE_HISTORY
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# # Preferred editor for local and remote sessions
+# Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
@@ -69,15 +73,44 @@ setopt NO_SHARE_HISTORY
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-if [[ -e $HOME/.zshrc-private ]]; then
-    source $HOME/.zshrc-private
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+export SHELL=/usr/local/bin/zsh
+export GOPATH=$HOME/work
+
+export PATH=/usr/local/share:/usr/local/sbin:/usr/local/bin:$HOME/bin:$HOME/.rbenv/shims:$PATH
+export PATH=/usr/local/opt/go/libexec/bin:$PATH
+export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/work/bin:$PATH
+
+# cd aliases.
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
+alias updatedb='sudo /usr/libexec/locate.updatedb'
+
+alias gist='gist -c -p -s'
+
+alias grep='grep --exclude="*.egg/" --exclude="*.min.js"'
+
+alias docker-clean='docker rm `docker ps --no-trunc -aq` && docker images -q --filter "dangling=true" | xargs docker rmi'
+
+export GPG_TTY=`tty`
+
+if [ -f "$HOME/.zsh_profile" ]; then
+    . "$HOME/.zsh_profile"
 fi
 
-alias unloadkeyboard="sudo kextunload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext"
-alias loadkeyboard="sudo kextload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext"
+BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
-# eval "$(docker-machine env dev)"
-
-FZF_DEFAULT_OPTS="--extended --cycle"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-alias g="ag --nobreak --nonumbers --noheading . | fzf"

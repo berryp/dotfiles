@@ -22,3 +22,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 echo "--- Installing tmux plugin manager ---"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+echo "--- Installing base16-shell ---"
+git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell

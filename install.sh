@@ -1,5 +1,20 @@
 #!/bin/sh
 
+echo "--- Installing OhMyZSH ---"
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+echo "--- Installing vim-plug ---"
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+echo "--- Installing tmux plugin manager ---"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+echo "--- Installing base16-shell ---"
+git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+
+echo "--- Installing dotfiles ---"
+
 files=$(find . -maxdepth 1 -type f -name ".*"  $(printf "! -name %s " .gitignore .gitmodules))
 
 mkdir -p tmp
@@ -13,15 +28,3 @@ for file in $files; do
     ln -s ~/.dotfiles/$f ~/$f
 done
 
-echo "--- Installing OhMyZSH ---"
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-echo "--- Installing vim-plug ---"
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-echo "--- Installing tmux plugin manager ---"
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-echo "--- Installing base16-shell ---"
-git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell

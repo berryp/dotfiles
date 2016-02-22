@@ -47,6 +47,7 @@
 [push]
   # Only push branches that have been set up to track a remote branch.
   default = current
+	followTags = true
 
 [apply]
   whitespace = warn
@@ -120,3 +121,5 @@
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
+[url "https://"]
+	insteadOf = git://

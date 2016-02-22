@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/berryp/.oh-my-zsh
+  export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -104,6 +104,8 @@ alias grep='grep --exclude="*.egg/" --exclude="*.min.js"'
 
 alias docker-clean='docker rm `docker ps --no-trunc -aq` && docker images -q --filter "dangling=true" | xargs docker rmi'
 
+alias a='atom-beta'
+
 export GPG_TTY=`tty`
 
 if [ -f "$HOME/.zsh_profile" ]; then
@@ -114,3 +116,11 @@ BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+PATH="/Users/b.phillips/perl5/bin${PATH+:}${PATH}"; export PATH;
+PERL5LIB="/Users/b.phillips/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/b.phillips/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/b.phillips/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/b.phillips/perl5"; export PERL_MM_OPT;
+
+. $HOME/.dotfiles/z.sh

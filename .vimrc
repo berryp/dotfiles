@@ -1,6 +1,6 @@
 set nocompatible                  " We don't need vi compatibility.
 
-set shell=/usr/bin/zsh
+set shell=/usr/local/bin/zsh
 
 " *****************************************************************************
 "  REFERENCE MATERIAL
@@ -30,34 +30,44 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 " General.
+" Plug 'easymotion/vim-easymotion'
 Plug 'airblade/vim-gitgutter'
+" Plug 'tpope/vim-git'
 Plug 'tpope/vim-fugitive'
-Plug 'bling/vim-airline'
-Plug 'sjl/gundo.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" Plug 'edkolev/tmuxline.vim'
+" Plug 'sjl/gundo.vim'
 Plug 'mkitt/tabline.vim'
-Plug 'mattn/gist-vim'
-Plug 'rizzatti/dash.vim'
+" Plug 'mattn/gist-vim'
+" Plug 'rizzatti/dash.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'chriskempson/base16-vim'
+Plug 'chriskempson/vim-tomorrow-theme'
+" Plug 'joshdick/onedark.vim'
 Plug 'fatih/vim-go'
-Plug 'itchyny/calendar.vim'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-notes'
-Plug 'mattn/webapi-vim'
-Plug 'lervag/vimtex'
+" Plug 'itchyny/calendar.vim'
+" Plug 'xolox/vim-misc'
+" Plug 'xolox/vim-notes'
+" Plug 'mattn/webapi-vim'
+" Plug 'lervag/vimtex'
 " Plug 'Shougo/neocomplete.vim'
-Plug 'vim-scripts/taglist.vim'
+" Plug 'vim-scripts/taglist.vim'
 
 " Files and buffers.
-Plug 'Lokaltog/vim-easymotion'
+" Plug 'Lokaltog/vim-easymotion'
 " Plug 'kien/ctrlp.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/gv.vim'
+" Plug 'junegunn/rainbow_parentheses.vim'
+
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
+" Plug 'suan/vim-instant-markdown'
 
 " Movement and editing.
 Plug 'tomtom/tcomment_vim'
-Plug 'msanders/snipmate.vim'
+" Plug 'msanders/snipmate.vim'
 Plug 'tpope/vim-surround'
 "Plug 'Townk/vim-autoclose'
 
@@ -83,10 +93,10 @@ call plug#end()
 syntax on                         " Required.
 filetype plugin indent on         " Required.
 
-" Encoding
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8
+" " Encoding
+" set encoding=utf-8
+" set fileencoding=utf-8
+" set fileencodings=utf-8
 
 let mapleader=","                 " Comma is easier to get to than backslash.
 
@@ -98,7 +108,7 @@ set wildignore+=*.egg-info,.*,*.pyc,*.tar,*.gz,*.log,*.fla,*.swf
 set wildignore+=virtualenv,env*,node_modules,bower_components,target,build
 set wildignore+=Godeps/_workspace/*
 
-set t_Co=256                      " Use 256 colors where supported.
+" set t_Co=256                      " Use 256 colors where supported.
 let base16colorspace=256
 set guifont=Inconsolata-g\ for\ Powerline:h12
 "set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
@@ -115,7 +125,8 @@ set clipboard+=unnamedplus
 " colorscheme Tomorrow-Night
 "colorscheme jellybeans
 set background=dark
-colorscheme base16-default
+colorscheme base16-google
+" colorscheme onedark
 
 set number                        " Show line numbers.
 set ruler
@@ -160,10 +171,10 @@ set hidden                        " Don't write to disk when loosing focus.
 
 set scrolloff=3					  " Leave n lines above/below curser.
 
-" Encoding
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8
+" " Encoding
+" set encoding=utf-8
+" set fileencoding=utf-8
+" set fileencodings=utf-8
 
 set nowrap                        " Disable line wrapping.
 
@@ -225,7 +236,7 @@ let g:airline_symbols.whitespace = 'Ξ'
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = '--ignore="E126,E127,E128,W124"'
 
-let g:syntastic_javascript_checkers = ['jscs']
+let g:syntastic_javascript_checkers = ['jscs', 'jshint']
 
 let g:ctrlp_working_path_mode = 0 " Use working path mvim was opened from.
 let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|node_modules|bower_components|env|tmp|build)$'
@@ -430,3 +441,6 @@ hi TabLineFill  ctermfg=Black  ctermbg=DarkGray     cterm=NONE
 hi TabLineSel   ctermfg=White  ctermbg=Gray  cterm=NONE
 hi LineNr       ctermbg=NONE  cterm=NONE
 
+if has('nvim')
+
+endif

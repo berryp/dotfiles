@@ -104,7 +104,7 @@ alias grep='grep --exclude="*.egg/" --exclude="*.min.js"'
 
 alias docker-clean='docker rm `docker ps --no-trunc -aq` && docker images -q --filter "dangling=true" | xargs docker rmi'
 
-alias a='atom-beta'
+alias a='atom'
 
 export GPG_TTY=`tty`
 
@@ -117,10 +117,17 @@ BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-PATH="/Users/b.phillips/perl5/bin${PATH+:}${PATH}"; export PATH;
-PERL5LIB="/Users/b.phillips/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/b.phillips/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/b.phillips/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/b.phillips/perl5"; export PERL_MM_OPT;
-
 . $HOME/.dotfiles/z.sh
+
+function dock {
+  docker-machine start dev
+  eval $(docker-machine env dev)
+}
+
+function addkeys {
+  ssh-add ~/.ssh/nap-dev.pem
+  ssh-add ~/.ssh/nap-live.pem
+}
+
+
+source /Users/b.phillips/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

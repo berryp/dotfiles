@@ -5,7 +5,7 @@
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="sorin"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -60,12 +60,7 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -84,10 +79,12 @@ source $ZSH/oh-my-zsh.sh
 
 export SHELL=/usr/local/bin/zsh
 export GOPATH=$HOME/work
+export GO15VENDOREXPERIMENT=1
 
 export PATH=/usr/local/share:/usr/local/sbin:/usr/local/bin:$HOME/bin:$HOME/.rbenv/shims:$PATH
 export PATH=/usr/local/opt/go/libexec/bin:$PATH
-export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/work/bin:$PATH
+export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/work/bin:/usr/local/go/bin:$PATH
+export PATH=/Users/b.phillips/Library/Python/2.7/bin:$PATH
 
 # cd aliases.
 alias ..="cd .."
@@ -120,8 +117,8 @@ BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
 . $HOME/.dotfiles/z.sh
 
 function dock {
-  docker-machine start dev
-  eval $(docker-machine env dev)
+  docker-machine start local
+  eval $(docker-machine env local)
 }
 
 function addkeys {
@@ -129,5 +126,10 @@ function addkeys {
   ssh-add ~/.ssh/nap-live.pem
 }
 
+export JAVA_HOME=/Library/Java/Home
 
 source /Users/b.phillips/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export PATH="/usr/local/var/rbenv/shims:$PATH"
+export RBENV_ROOT=/usr/local/var/rbenv
+
+alias agrep="grep --color=auto -nr -A 2 -B 2"

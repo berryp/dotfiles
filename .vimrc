@@ -1,6 +1,4 @@
-set nocompatible                  " We don't need vi compatibility.
 
-set shell=/usr/local/bin/zsh
 
 " *****************************************************************************
 "  REFERENCE MATERIAL
@@ -13,76 +11,49 @@ set shell=/usr/local/bin/zsh
 " https://github.com/mitechie/pyvim/blob/master/.vimrc
 
 
-" *****************************************************************************
-"  VUNDLE SETUP AND BUNDLES
-" *****************************************************************************
-
-" Note: The vundle repo needs to be cloned in to .vim/bundle.
-" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-
-" Setup
 filetype off
-" set rtp+=~/.vim/bundle/Vundle.vim
-" call vundle#begin()
-
-" Plugin 'gmarik/Vundle.vim'
 
 call plug#begin('~/.vim/plugged')
 
 " General.
-" Plug 'easymotion/vim-easymotion'
 Plug 'airblade/vim-gitgutter'
-" Plug 'tpope/vim-git'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'easymotion/vim-easymotion'
+
 " Plug 'edkolev/tmuxline.vim'
 " Plug 'sjl/gundo.vim'
-Plug 'mkitt/tabline.vim'
+" Plug 'mkitt/tabline.vim'
 " Plug 'mattn/gist-vim'
-" Plug 'rizzatti/dash.vim'
-Plug 'nanotech/jellybeans.vim'
 Plug 'chriskempson/base16-vim'
-Plug 'chriskempson/vim-tomorrow-theme'
-" Plug 'joshdick/onedark.vim'
-Plug 'fatih/vim-go'
-" Plug 'itchyny/calendar.vim'
-" Plug 'xolox/vim-misc'
-" Plug 'xolox/vim-notes'
-" Plug 'mattn/webapi-vim'
-" Plug 'lervag/vimtex'
-" Plug 'Shougo/neocomplete.vim'
-" Plug 'vim-scripts/taglist.vim'
 
 " Files and buffers.
-" Plug 'Lokaltog/vim-easymotion'
-" Plug 'kien/ctrlp.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/gv.vim'
-" Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/gv.vim'
 
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
-" Plug 'suan/vim-instant-markdown'
+Plug 'suan/vim-instant-markdown', { 'for': 'md' }
 
 " Movement and editing.
 Plug 'tomtom/tcomment_vim'
-" Plug 'msanders/snipmate.vim'
 Plug 'tpope/vim-surround'
-"Plug 'Townk/vim-autoclose'
 
 " Syntax
 Plug 'scrooloose/syntastic'
-Plug 'mustache/vim-mustache-handlebars'
+Plug 'mxw/vim-jsx'
+Plug 'tpope/vim-markdown'
+Plug 'mustache/vim-mustache-handlebars', { 'for': ['hbs', 'handlebars'] }
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'nsf/gocode',  { 'for': 'go' }
 " Collection of language packs.
 Plug 'sheerun/vim-polyglot'
-" Plug 'davidhalter/jedi-vim'
-Plug 'nsf/gocode', {'rtp': 'vim/'}
-Plug 'groenewege/vim-less'
+Plug 'hashivim/vim-terraform'
 
-Plug 'vim-scripts/greplace.vim'
-
-" call vundle#end()
+Plug 'sourcegraph/sourcegraph-vim', {'for': ['go']}
+Plug 'lambdalisue/vim-gista'
 
 call plug#end()
 
@@ -113,8 +84,8 @@ let base16colorspace=256
 set guifont=Inconsolata-g\ for\ Powerline:h12
 "set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
 
-set spelllang=en_us
-set spellfile=~/.vim/spell/en.utf-8.add
+set spelllang=en_gb
+" set spellfile=~/.vim/spell/en.utf-8.add
 
 set clipboard+=unnamedplus
 
@@ -122,11 +93,8 @@ set clipboard+=unnamedplus
 "  Editor
 " -----------------------------------------------------------------------------
 
-" colorscheme Tomorrow-Night
-"colorscheme jellybeans
 set background=dark
-colorscheme base16-google
-" colorscheme onedark
+colorscheme base16-default-dark
 
 set number                        " Show line numbers.
 set ruler
@@ -156,8 +124,8 @@ set showcmd
 set shellcmdflag=-c               " Allow the shell to be non-interactive.
 
 " Make tabs and trailing spaces visible when requested.
-set listchars=tab:>-,trail:·
-nmap <leader>l :set list!<CR>
+" set listchars=tab:>-,trail:·
+" nmap <leader>l :set list!<CR>
 
 "Invisible character colors
 highlight NonText guifg=#4a4a59
@@ -175,8 +143,6 @@ set scrolloff=3					  " Leave n lines above/below curser.
 " set encoding=utf-8
 " set fileencoding=utf-8
 " set fileencodings=utf-8
-
-set nowrap                        " Disable line wrapping.
 
 set colorcolumn=80                " Show a column highlight after 80 characters.
 
@@ -236,10 +202,9 @@ let g:airline_symbols.whitespace = 'Ξ'
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = '--ignore="E126,E127,E128,W124"'
 
-let g:syntastic_javascript_checkers = ['jscs', 'jshint']
+let g:syntastic_javascript_checkers = ['jshint', 'eslint']
 
-let g:ctrlp_working_path_mode = 0 " Use working path mvim was opened from.
-let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|node_modules|bower_components|env|tmp|build)$'
+let g:fzf_buffers_jump = 1
 
 " Don't ask to load local vimrc.
 " TODO: This doesn't seem to be working.
@@ -309,6 +274,10 @@ au BufRead *.hbs,*.handlebars set ft=mustache
 au BufRead *.xhtml set ft=html
 au BufRead *.todo set ft=todo
 au BufEnter *.schema setf json
+" AWS CloudFormation templates and params
+au BufEnter *.template setf json
+au BufEnter *.params setf json
+au BufNewFile,BufReadPost *.md set filetype=markdown
 "
 " Indentation.
 au BufEnter *.html,*.hbs,*.jade,*.tmpl set tabstop=2 shiftwidth=2 tabstop=2
@@ -334,13 +303,20 @@ inoremap ;; <Esc> :
 " Faster access to ex mode.
 nnoremap ; :
 
+" tnoremap <A-h> <C-\><C-n><C-w>h
+" tnoremap <A-j> <C-\><C-n><C-w>j
+" tnoremap <A-k> <C-\><C-n><C-w>k
+" tnoremap <A-l> <C-\><C-n><C-w>l
+" nnoremap <A-h> <C-w>h
+" nnoremap <A-j> <C-w>j
+" nnoremap <A-k> <C-w>k
+" nnoremap <A-l> <C-w>l
+
 " -----------------------------------------------------------------------------
 "  Commands
 " -----------------------------------------------------------------------------
 
-map <F5> :Grunt build<CR>
 map <F8> :TagbarToggle<CR>
-
 map <C-n> :NERDTreeToggle<CR>
 
 " Fugitive (Git).
@@ -351,7 +327,9 @@ map <leader>gb :Gblame<CR>
 map <leader>gl :Glog<CR>
 map <leader>gp :Gpush<CR>
 
-map <C-p> :FZF<CR>
+map <C-a> :FZF<CR>
+map <C-p> :GitFiles<CR>
+map <C-t> :Buffers<CR>
 
 nmap <silent> <leader>s :set spell!<CR> " Toggle spellcheck.
 
@@ -359,12 +337,6 @@ set pastetoggle=<F2>              " Switch paste states on F2.
 
 nmap <silent> ,/ :nohlsearch<CR>  " Shortcut to clearing search highlights.
 
-let g:calendar_google_calendar = 1
-
-
-" TODO toggle
-map <silent><buffer> <leader>tt :TodoToggle<cr>
-imap <silent><buffer> <leader>tt <c-o>:TodoToggle<cr>
 
 set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 
@@ -377,7 +349,7 @@ let g:go_highlight_build_constraints = 1
 "  Navigation
 " -----------------------------------------------------------------------------
 
-" Disable arrow keys.
+" Disable arrow keys in insert mode.
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
@@ -426,6 +398,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Always split to right and bottom.
 set splitbelow
 set splitright
 

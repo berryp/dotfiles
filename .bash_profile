@@ -36,16 +36,6 @@ alias c='pygmentize -O style=monokai -f console256 -g'
 export PIP_DOWNLOAD_CACHE=$HOME/Library/Caches/pip-downloads
 export MACOSX_DEPLOYMENT_TARGET=10.9
 export CFLAGS=-I/brew/include
-# export JAVA_HOME=/Library/Java/Home # $(/usr/libexec/java_home)
-export JAVA_HOME=`/usr/libexec/java_home -v 1.6.0_65-b14-466.1`
-export JVM_ARGS="-Xmx1024m -XX:MaxPermSize=512m"
-
-# Android development
-export ANDROID_HOME=/usr/local/opt/android-sdk
-export ANDROIDSDK=$ANDROID_HOME
-export ANDROIDAPI=22
-
-export VIRTUALENV_DISTRIBUTE=1
 
 export PATH=/usr/local/share:/usr/local/sbin:/usr/local/bin:$HOME/bin:$HOME/.rbenv/shims:$PATH
 export PATH=/usr/local/opt/go/libexec/bin:$PATH

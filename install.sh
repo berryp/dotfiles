@@ -1,5 +1,14 @@
 #!/bin/sh
 
+function gitclone {
+  if [ ! -d $2 ]; then
+    git clone $1 $2
+  else
+    cd $2
+    git pull
+  fi
+}
+
 echo "--- Installing OhMyZSH ---"
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
@@ -8,10 +17,10 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 echo "--- Installing tmux plugin manager ---"
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+gitclone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 echo "--- Installing base16-shell ---"
-git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+gitclone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
 
 echo "--- Installing dotfiles ---"
 

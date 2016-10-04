@@ -206,16 +206,6 @@ let g:syntastic_javascript_checkers = ['jshint', 'eslint']
 
 let g:fzf_buffers_jump = 1
 
-" Don't ask to load local vimrc.
-" TODO: This doesn't seem to be working.
-if (!exists("g:localvimrc_ask"))
-  let g:localvimrc_ask = 0
-else
-  let g:localvimrc_ask = 0
-endif
-
-let g:calendar_diary=$HOME.'/.vim/diary'
-
 let g:tagbar_autofocus = 1
 let g:tagbar_autoclose = 1
 

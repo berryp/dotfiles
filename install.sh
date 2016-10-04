@@ -29,4 +29,4 @@ for file in $files; do
 done
 
 echo "--- Installing VIM plugins ---"
-vim +PlugInstall +qall
+vim -u NONE +PlugInstall +qall

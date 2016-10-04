@@ -22,20 +22,20 @@ gitclone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 echo "--- Installing base16-shell ---"
 gitclone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
 
-echo "--- Installing dotfiles ---"
-
-files=$(find . -maxdepth 1 -type f -name ".*"  $(printf "! -name %s " .gitignore .gitmodules))
-
-mkdir -p tmp
-
-echo "--- Linking dotfiles ---"
-for file in $files; do
-    f=${file#./}
-    echo "Backing up $f."
-    mv ~/$f tmp/
-    echo "Linking $f."
-    ln -s ~/.dotfiles/$f ~/$f
-done
-
-echo "--- Installing VIM plugins ---"
-vim -u NONE +PlugInstall +qall
+# echo "--- Installing dotfiles ---"
+#
+# files=$(find . -maxdepth 1 -type f -name ".*"  $(printf "! -name %s " .gitignore .gitmodules))
+#
+# mkdir -p tmp
+#
+# echo "--- Linking dotfiles ---"
+# for file in $files; do
+#     f=${file#./}
+#     echo "Backing up $f."
+#     mv ~/$f tmp/
+#     echo "Linking $f."
+#     ln -s ~/.dotfiles/$f ~/$f
+# done
+#
+# echo "--- Installing VIM plugins ---"
+# vim -u NONE +PlugInstall +qall

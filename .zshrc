@@ -77,6 +77,7 @@ export EDITOR='vi'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export SHELL=`which zsh`
 export GOPATH=$HOME/work
 export GO15VENDOREXPERIMENT=1
 

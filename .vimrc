@@ -52,7 +52,6 @@ Plug 'nsf/gocode',  { 'for': 'go' }
 Plug 'sheerun/vim-polyglot'
 Plug 'hashivim/vim-terraform'
 
-Plug 'sourcegraph/sourcegraph-vim', {'for': ['go']}
 Plug 'lambdalisue/vim-gista'
 
 call plug#end()

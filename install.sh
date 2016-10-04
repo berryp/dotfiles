@@ -28,3 +28,5 @@ for file in $files; do
     ln -s ~/.dotfiles/$f ~/$f
 done
 
+echo "--- Installing VIM plugins ---"
+vim +PlugInstall +qall

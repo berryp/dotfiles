@@ -60,7 +60,7 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-export EDITOR='vim'
+export EDITOR='vi'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -101,20 +101,16 @@ alias grep='grep --exclude="*.egg/" --exclude="*.min.js"'
 
 alias docker-clean='docker rm `docker ps --no-trunc -aq` && docker images -q --filter "dangling=true" | xargs docker rmi'
 
-alias a='atom'
-
 export GPG_TTY=`tty`
 
 if [ -f "$HOME/.zsh_profile" ]; then
     . "$HOME/.zsh_profile"
 fi
 
-BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+# BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
+# [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-. $HOME/.dotfiles/z.sh
 
 function dock {
   docker-machine start local
@@ -125,11 +121,5 @@ function addkeys {
   ssh-add ~/.ssh/nap-dev.pem
   ssh-add ~/.ssh/nap-live.pem
 }
-
-export JAVA_HOME=/Library/Java/Home
-
-source /Users/b.phillips/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-export PATH="/usr/local/var/rbenv/shims:$PATH"
-export RBENV_ROOT=/usr/local/var/rbenv
 
 alias agrep="grep --color=auto -nr -A 2 -B 2"

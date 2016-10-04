@@ -80,6 +80,11 @@ set wildignore+=Godeps/_workspace/*
 
 " set t_Co=256                      " Use 256 colors where supported.
 let base16colorspace=256
+" if filereadable(expand('~/.vimrc_background'))
+"   let base16colorspace=256
+"   source ~/.vimrc_background
+" endif
+
 set guifont=Inconsolata-g\ for\ Powerline:h12
 "set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
 
@@ -93,7 +98,12 @@ set clipboard+=unnamedplus
 " -----------------------------------------------------------------------------
 
 set background=dark
-colorscheme base16-default-dark
+
+" Start gracefully when colorscheme is not installed.
+try
+  colorscheme base16-default-dark
+catch
+endtry
 
 set number                        " Show line numbers.
 set ruler

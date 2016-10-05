@@ -77,6 +77,7 @@ export EDITOR='vi'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# export SHELL='/usr/local/bin/zsh'
 export SHELL=`which zsh`
 export GOPATH=$HOME/work
 export GO15VENDOREXPERIMENT=1
@@ -109,6 +110,8 @@ fi
 
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+# Set the theme
+base16_default-dark
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

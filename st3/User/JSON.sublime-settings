@@ -1,9 +1,0 @@
-{
-	"extensions":
-	[
-		".jshintrc",
-		".bowerrc",
-		".jscsrc"
-	],
-	"tab_size": 2
-}

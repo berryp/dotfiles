@@ -6,3 +6,4 @@ profile
 Gist.sublime-settings
 Package\ Control.sublime-settings
 tmp/
+.vagrant/

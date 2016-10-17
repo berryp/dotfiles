@@ -101,7 +101,7 @@ set background=dark
 
 " Start gracefully when colorscheme is not installed.
 try
-  colorscheme base16-default-dark
+  colorscheme base16-google-dark
 catch
 endtry
 

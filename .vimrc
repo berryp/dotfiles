@@ -94,7 +94,6 @@ set clipboard+=unnamedplus
 " -----------------------------------------------------------------------------
 
 set background=dark
-<<<<<<< Updated upstream
 
 " Start gracefully when colorscheme is not installed.
 try

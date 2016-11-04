@@ -1,5 +1,3 @@
-
-
 " *****************************************************************************
 "  REFERENCE MATERIAL
 " *****************************************************************************
@@ -22,16 +20,14 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
 
-" Plug 'edkolev/tmuxline.vim'
-" Plug 'sjl/gundo.vim'
-" Plug 'mkitt/tabline.vim'
-" Plug 'mattn/gist-vim'
 Plug 'chriskempson/base16-vim'
-
+Plug 'fatih/vim-go'
+Plug 'hashivim/vim-terraform'
+"
 " Files and buffers.
 Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-" Plug 'junegunn/gv.vim'
+", { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/gv.vim'
 
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
@@ -48,9 +44,9 @@ Plug 'tpope/vim-markdown'
 Plug 'mustache/vim-mustache-handlebars', { 'for': ['hbs', 'handlebars'] }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'nsf/gocode',  { 'for': 'go' }
+"
 " Collection of language packs.
 Plug 'sheerun/vim-polyglot'
-Plug 'hashivim/vim-terraform'
 
 Plug 'lambdalisue/vim-gista'
 
@@ -76,7 +72,7 @@ set wildignore+=tmp,*.so,*.swp,*.zip,*.egg,*.min.js,pkg,github.com
 set wildignore+=*.png,*.jpg,*.jpeg,*.gif,*.webp
 set wildignore+=*.egg-info,.*,*.pyc,*.tar,*.gz,*.log,*.fla,*.swf
 set wildignore+=virtualenv,env*,node_modules,bower_components,target,build
-set wildignore+=Godeps/_workspace/*
+set wildignore+=Godeps
 
 " set t_Co=256                      " Use 256 colors where supported.
 let base16colorspace=256
@@ -98,6 +94,7 @@ set clipboard+=unnamedplus
 " -----------------------------------------------------------------------------
 
 set background=dark
+<<<<<<< Updated upstream
 
 " Start gracefully when colorscheme is not installed.
 try
@@ -207,6 +204,7 @@ let g:airline_right_sep = ''
 let g:airline_symbols.linenr = ''
 let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.whitespace = 'Ξ'
+let g:airline#extensions#tabline#enabled = 1
 
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = '--ignore="E126,E127,E128,W124"'
@@ -417,5 +415,3 @@ if has('nvim')
 
 endif
 
-
-" let termguicolors

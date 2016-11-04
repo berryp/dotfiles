@@ -17,6 +17,7 @@ export PATH=/usr/local/opt/go/libexec/bin:$PATH
 export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/work/bin:/usr/local/go/bin:$PATH
 export PATH=/Users/b.phillips/Library/Python/2.7/bin:$PATH
 
+
 # cd aliases.
 alias ..="cd .."
 alias ...="cd ../.."
@@ -28,6 +29,7 @@ alias updatedb='sudo /usr/libexec/locate.updatedb'
 
 alias gist='gist -c -p -s'
 alias grep='grep --exclude="*.egg/" --exclude="*.min.js"'
+alias agrep="grep --color=auto -nr -A 2 -B 2"
 
 alias docker-clean='docker rm `docker ps --no-trunc -aq` && docker images -q --filter "dangling=true" | xargs docker rmi'
 
@@ -49,4 +51,4 @@ function dock {
   eval $(docker-machine env local)
 }
 
-alias agrep="grep --color=auto -nr -A 2 -B 2"
+source $HOME/.oh-my-zsh/plugins/z/z.sh

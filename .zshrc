@@ -32,6 +32,7 @@ alias grep='grep --exclude="*.egg/" --exclude="*.min.js"'
 alias agrep="grep --color=auto -nr -A 2 -B 2"
 
 alias docker-clean='docker rm `docker ps --no-trunc -aq` && docker images -q --filter "dangling=true" | xargs docker rmi'
+alias asjson='python -m json.tool'
 
 export GPG_TTY=`tty`
 

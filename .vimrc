@@ -26,6 +26,7 @@ Plug 'hashivim/vim-terraform'
 "
 " Files and buffers.
 Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 ", { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/gv.vim'
 
@@ -307,6 +308,10 @@ nnoremap ; :
 " nnoremap <A-j> <C-w>j
 " nnoremap <A-k> <C-w>k
 " nnoremap <A-l> <C-w>l
+
+" Cycle through buffers
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
 
 " -----------------------------------------------------------------------------
 "  Commands

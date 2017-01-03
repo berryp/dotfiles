@@ -1,10 +1,25 @@
 #!/bin/sh
 
 echo "--- Updating system ---"
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt-get update
 
+
 echo "--- Installing packages ---"
-sudo apt-get install -y python-pip xsel neovim fzf go go-tools zip tree zsh curl
+sudo apt-get install -y \
+  python-dev \
+  python-pip \
+  python3-dev \
+  python3-pip \
+  xsel \
+  neovim \
+  fzf \
+  go go-tools \
+  zip \
+  tree \
+  zsh \
+  curl
 
 echo "--- Configuring environment ---"
 chsh -s /usr/bin/zsh
@@ -28,7 +43,12 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 echo "--- Setting up Neovim ---"
 mkdir -p $HOME/config/nvim
 ln -s $HOME/.vim $HOME/.config/nvim
-# ln -s /usr/local/bin/vi /usr/bin/nvim
+sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+sudo update-alternatives --config vi
+sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+sudo update-alternatives --config vim
+sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+sudo update-alternatives --config editor
 
 echo "--- Installing vim-plug ---"
 curl -fsLo $HOME/.vim/autoload/plug.vim --create-dirs \

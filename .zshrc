@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-  export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="sorin"
 
@@ -12,10 +12,12 @@ export EDITOR='vi'
 export GOPATH=$HOME/work
 export GO15VENDOREXPERIMENT=1
 
-export PATH=/usr/local/share:/usr/local/sbin:/usr/local/bin:$HOME/bin:$HOME/.rbenv/shims:$PATH
-export PATH=/usr/local/opt/go/libexec/bin:$PATH
-export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/work/bin:/usr/local/go/bin:$PATH
-export PATH=/Users/b.phillips/Library/Python/2.7/bin:$PATH
+SYSTEM_PATH=$PATH
+export PATH=/usr/local/share:/usr/local/sbin:/usr/local/bin:$HOME/bin:$HOME/.rbenv/shims:/usr/bin
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export PATH=$PATH:$GOPATH/bin:$GOROOT/bin:$HOME/work/bin:/usr/local/go/bin
+export PATH=$PATH:$HOME/Library/Python/2.7/bin
+export PATH=$PATH:$SYSTEM_PATH
 
 
 # cd aliases.
@@ -33,6 +35,8 @@ alias agrep="grep --color=auto -nr -A 2 -B 2"
 
 alias docker-clean='docker rm `docker ps --no-trunc -aq` && docker images -q --filter "dangling=true" | xargs docker rmi'
 alias asjson='python -m json.tool'
+
+alias vi=nvim
 
 export GPG_TTY=`tty`
 

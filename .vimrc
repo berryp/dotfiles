@@ -19,6 +19,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
+" Plug 'bling/vim-bufferline'
 
 Plug 'chriskempson/base16-vim'
 Plug 'fatih/vim-go'
@@ -40,7 +41,6 @@ Plug 'tpope/vim-surround'
 
 " Syntax
 Plug 'scrooloose/syntastic'
-Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-markdown'
 Plug 'mustache/vim-mustache-handlebars', { 'for': ['hbs', 'handlebars'] }
 Plug 'fatih/vim-go', { 'for': 'go' }
@@ -82,8 +82,8 @@ if filereadable(expand('~/.vimrc_background'))
   source ~/.vimrc_background
 endif
 
-set guifont=Inconsolata-g\ for\ Powerline:h12
-"set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
+" set guifont=Inconsolata-g\ for\ Powerline:h12
+set guifont=Droid\ Sans\ Mono\ for\ Powerline:h12
 
 set spelllang=en_gb
 " set spellfile=~/.vim/spell/en.utf-8.add
@@ -116,6 +116,7 @@ set title                         " Set the terminal title.
 set shortmess=atI                 " Stifle many interruptive prompts.
 set backspace=indent,eol,start    " Intuitive backspacing in insert mode.
 set virtualedit=block             " Useful for column select.
+set nowrap
 
 set nobackup
 set noswapfile
@@ -130,8 +131,8 @@ set showcmd
 set shellcmdflag=-c               " Allow the shell to be non-interactive.
 
 " Make tabs and trailing spaces visible when requested.
-" set listchars=tab:>-,trail:·
-" nmap <leader>l :set list!<CR>
+set listchars=tab:>-,trail:·
+nmap <leader>l :set list!<CR>
 
 "Invisible character colors
 highlight NonText guifg=#4a4a59
@@ -143,7 +144,7 @@ set wildmode=list:longest
 
 set hidden                        " Don't write to disk when loosing focus.
 
-set scrolloff=3					  " Leave n lines above/below curser.
+set scrolloff=3                   " Leave n lines above/below curser.
 
 " " Encoding
 " set encoding=utf-8
@@ -189,21 +190,26 @@ au FileType go nmap gd <Plug>(go-def-tab)
 let s:tlist_def_go_settings = 'go;g:enum;s:struct;u:union;t:type;' .
                            \ 'v:variable;f:function'
 
-" Powerline patched fonts are not rendering the symbols correctly in iTerm2
-" so replace them with regular Unicode characters.
-" TODO: Figure out why patched fonts are not rendering, and fix.
-
-" let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_symbols.linenr = ''
+" Powerline patched fonts are not rendering the symbols correctly in iTerm2
+" so replace them with regular Unicode characters.
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.maxlinenr = '☰'
+let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.notexists = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
+
 let g:airline#extensions#tabline#enabled = 1
 
 let g:syntastic_python_checkers = ['flake8']
@@ -213,7 +219,6 @@ let g:syntastic_javascript_checkers = ['jshint', 'eslint']
 
 let g:fzf_buffers_jump = 1
 
-let g:tagbar_autofocus = 1
 let g:tagbar_autoclose = 1
 
 " gotags
@@ -268,12 +273,11 @@ nnoremap <silent> <c-]> :call MatchCaseTag()<CR>
 
 " Map file types to syntax.
 au BufRead *.hbs,*.handlebars set ft=mustache
-au BufRead *.xhtml set ft=html
-au BufRead *.todo set ft=todo
 au BufEnter *.schema setf json
 " AWS CloudFormation templates and params
 au BufEnter *.template setf json
 au BufEnter *.params setf json
+au BufEnter Jenkinsfile setf groovy
 au BufNewFile,BufReadPost *.md set filetype=markdown
 "
 " Indentation.
@@ -299,6 +303,9 @@ inoremap ;; <Esc> :
 
 " Faster access to ex mode.
 nnoremap ; :
+
+" Use Esc to exit terminal insert mode.
+" tnoremap <Esc> <C-\><C-n>
 
 " tnoremap <A-h> <C-\><C-n><C-w>h
 " tnoremap <A-j> <C-\><C-n><C-w>j
@@ -362,8 +369,8 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprev<CR>
 
 " Scroll the viewport faster.
 nnoremap <C-e> 3<C-e>

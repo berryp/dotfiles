@@ -1,16 +1,15 @@
 #!/bin/sh
 
 echo "--- Updating system ---"
-sudo pacman --noconfirm -Syu
+sudo apt-get update
 
 echo "--- Installing packages ---"
-sudo pacman --noconfirm --needed -S python2 python-pip xsel neovim fzf go go-tools zip tree
+sudo apt-get install -y python-pip xsel neovim fzf go go-tools zip tree zsh curl
 
 echo "--- Configuring environment ---"
 chsh -s /usr/bin/zsh
 
 export DOTFILES=$PWD
-export HOME=/home/vagrant
 
 files=$(find . -maxdepth 1 -type f -name ".*"  $(printf "! -name %s " .gitignore .gitmodules))
 
@@ -29,7 +28,7 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 echo "--- Setting up Neovim ---"
 mkdir -p $HOME/config/nvim
 ln -s $HOME/.vim $HOME/.config/nvim
-ln -s /usr/local/bin/vi /usr/bin/nvim
+# ln -s /usr/local/bin/vi /usr/bin/nvim
 
 echo "--- Installing vim-plug ---"
 curl -fsLo $HOME/.vim/autoload/plug.vim --create-dirs \

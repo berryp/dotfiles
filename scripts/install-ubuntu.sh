@@ -3,6 +3,7 @@
 echo "--- Updating system ---"
 sudo apt-get install software-properties-common
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
+sudo add-apt-repository -y ppa:ubuntu-lxc/lxd-stable
 sudo apt-get update
 
 
@@ -15,7 +16,7 @@ sudo apt-get install -y \
   xsel \
   neovim \
   fzf \
-  go go-tools \
+  golang \
   zip \
   tree \
   zsh \
@@ -36,6 +37,10 @@ for file in $files; do
     rm $HOME/$f
     ln -s $PWD/$f $HOME/$f
 done
+
+echo "--- Installing FZF ---"
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
 
 echo "--- Installing OhMyZSH ---"
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"

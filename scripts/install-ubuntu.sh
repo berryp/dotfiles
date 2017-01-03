@@ -15,7 +15,6 @@ sudo apt-get install -y \
   python3-pip \
   xsel \
   neovim \
-  fzf \
   golang \
   zip \
   tree \

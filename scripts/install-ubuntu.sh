@@ -6,6 +6,11 @@ sudo add-apt-repository -y ppa:neovim-ppa/unstable
 sudo add-apt-repository -y ppa:ubuntu-lxc/lxd-stable
 sudo apt-get update
 
+# Docker
+sudo apt-get install apt-transport-https ca-certificates
+sudo apt-key adv \
+               --keyserver hkp://ha.pool.sks-keyservers.net:80 \
+               --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
 echo "--- Installing packages ---"
 sudo apt-get install -y \
@@ -19,7 +24,8 @@ sudo apt-get install -y \
   zip \
   tree \
   zsh \
-  curl
+  curl \
+  docker-engine
 
 echo "--- Configuring environment ---"
 chsh -s /usr/bin/zsh
@@ -27,15 +33,6 @@ chsh -s /usr/bin/zsh
 export DOTFILES=$PWD
 
 files=$(find . -maxdepth 1 -type f -name ".*"  $(printf "! -name %s " .gitignore .gitmodules))
-
-echo "--- Linking dotfiles ---"
-for file in $files; do
-    f=${file#./}
-    echo "Linking $f."
-    echo $f $HOME/$f
-    rm $HOME/$f
-    ln -s $PWD/$f $HOME/$f
-done
 
 echo "--- Installing FZF ---"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -64,4 +61,13 @@ git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 
 echo "--- Installing base16-shell ---"
 git clone https://github.com/chriskempson/base16-shell.git $HOME/.config/base16-shell
+
+echo "--- Linking dotfiles ---"
+for file in $files; do
+    f=${file#./}
+    echo "Linking $f."
+    echo $f $HOME/$f
+    rm $HOME/$f
+    ln -s $PWD/$f $HOME/$f
+done
 

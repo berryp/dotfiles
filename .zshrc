@@ -12,6 +12,13 @@ export EDITOR='vi'
 export GOPATH=$HOME/work
 export GO15VENDOREXPERIMENT=1
 
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+  export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python"
+  export WORKON_HOME=~/.envs
+  source /usr/local/bin/virtualenvwrapper.sh
+fi
+
+
 SYSTEM_PATH=$PATH
 export PATH=/usr/local/share:/usr/local/sbin:/usr/local/bin:$HOME/bin:$HOME/.rbenv/shims:/usr/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
@@ -50,6 +57,7 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 base16_default-dark
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='ag -g ""'
 
 function dock {
   docker-machine start local

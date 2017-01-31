@@ -72,7 +72,7 @@ set wildmode=list:longest,list:full
 set wildignore+=tmp,*.so,*.swp,*.zip,*.egg,*.min.js,pkg,github.com
 set wildignore+=*.png,*.jpg,*.jpeg,*.gif,*.webp
 set wildignore+=*.egg-info,.*,*.pyc,*.tar,*.gz,*.log,*.fla,*.swf
-set wildignore+=virtualenv,env*,node_modules,bower_components,target,build
+set wildignore+=env,node_modules,bower_components,target,build
 set wildignore+=Godeps
 
 " set t_Co=256                      " Use 256 colors where supported.
@@ -215,7 +215,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = '--ignore="E126,E127,E128,W124"'
 
-let g:syntastic_javascript_checkers = ['jshint', 'eslint']
+let g:syntastic_javascript_checkers = ['eslint']
 
 let g:fzf_buffers_jump = 1
 
@@ -283,7 +283,7 @@ au BufNewFile,BufReadPost *.md set filetype=markdown
 " Indentation.
 au BufEnter *.html,*.hbs,*.jade,*.tmpl set tabstop=2 shiftwidth=2 tabstop=2
 au BufEnter *.json set tabstop=2 shiftwidth=2 tabstop=2
-au BufEnter *.py set tabstop=4 shiftwidth=4 tabstop=4
+au BufEnter *.py set tabstop=4 shiftwidth=4 tabstop=4 expandtab
 au BufEnter *.snippets set tabstop=4 shiftwidth=4 noexpandtab
 au BufEnter *.go set tabstop=4 shiftwidth=4 noexpandtab colorcolumn=
 

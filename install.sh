@@ -50,4 +50,4 @@ chsh -s /usr/bin/zsh
 
 echo "--- Caveats ---"
 echo "Install VIM plugins using :PlugInstall"
-# vim -u NONE +PlugInstall +qall
+vi -c ':execute "PlugInstall" | :qa'

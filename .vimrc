@@ -30,6 +30,9 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 ", { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/gv.vim'
+Plug 'junegunn/vim-peekaboo'
+Plug 'mbbill/undotree'
+Plug 'justinmk/vim-gtfo'
 
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
@@ -45,6 +48,8 @@ Plug 'tpope/vim-markdown'
 Plug 'mustache/vim-mustache-handlebars', { 'for': ['hbs', 'handlebars'] }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'nsf/gocode',  { 'for': 'go' }
+" Plug 'editorconfig/editorconfig-vim'
+Plug 'mxw/vim-jsx'
 "
 " Collection of language packs.
 Plug 'sheerun/vim-polyglot'
@@ -88,7 +93,7 @@ set guifont=Droid\ Sans\ Mono\ for\ Powerline:h12
 set spelllang=en_gb
 " set spellfile=~/.vim/spell/en.utf-8.add
 
-set clipboard+=unnamedplus
+set clipboard+=unnamed
 
 " -----------------------------------------------------------------------------
 "  Editor
@@ -186,9 +191,12 @@ au FileType go nmap <Leader>b <Plug>(go-build)
 au FileType go nmap <Leader>t <Plug>(go-test)
 au FileType go nmap gd <Plug>(go-def-tab)
 
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
 " go language
 let s:tlist_def_go_settings = 'go;g:enum;s:struct;u:union;t:type;' .
-                           \ 'v:variable;f:function'
+      \ 'v:variable;f:function'
 
 let g:airline_powerline_fonts = 0
 
@@ -216,6 +224,8 @@ let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = '--ignore="E126,E127,E128,W124"'
 
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 let g:fzf_buffers_jump = 1
 
@@ -223,46 +233,52 @@ let g:tagbar_autoclose = 1
 
 " gotags
 let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
+      \ 'ctagstype' : 'go',
+      \ 'kinds'     : [
+      \ 'p:package',
+      \ 'i:imports:1',
+      \ 'c:constants',
+      \ 'v:variables',
+      \ 't:types',
+      \ 'n:interfaces',
+      \ 'w:fields',
+      \ 'e:embedded',
+      \ 'm:methods',
+      \ 'r:constructor',
+      \ 'f:functions'
+      \ ],
+      \ 'sro' : '.',
+      \ 'kind2scope' : {
+      \ 't' : 'ctype',
+      \ 'n' : 'ntype'
+      \ },
+      \ 'scope2kind' : {
+      \ 'ctype' : 't',
+      \ 'ntype' : 'n'
+      \ },
+      \ 'ctagsbin'  : 'gotags',
+      \ 'ctagsargs' : '-sort -silent'
+      \ }
 
 let g:notes_directories = ['~/Google\ Drive/Notes']
 
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 set tags+=~/.vim/systags
 
 " go to defn of tag under the cursor.
 fun! MatchCaseTag()
-    let ic = &ic
-    set noic
-    try
-        exe 'tjump ' . expand('<cword>')
-    finally
-       let &ic = ic
-    endtry
+  let ic = &ic
+  set noic
+  try
+    exe 'tjump ' . expand('<cword>')
+  finally
+    let &ic = ic
+  endtry
 endfun
 nnoremap <silent> <c-]> :call MatchCaseTag()<CR>
 
@@ -274,6 +290,7 @@ nnoremap <silent> <c-]> :call MatchCaseTag()<CR>
 " Map file types to syntax.
 au BufRead *.hbs,*.handlebars set ft=mustache
 au BufEnter *.schema setf json
+au BufEnter .eslintrc setf json
 " AWS CloudFormation templates and params
 au BufEnter *.template setf json
 au BufEnter *.params setf json
@@ -343,6 +360,12 @@ nmap <silent> <leader>s :set spell!<CR> " Toggle spellcheck.
 
 set pastetoggle=<F2>              " Switch paste states on F2.
 
+nnoremap <F5> :UndotreeToggle<cr>
+if has("persistent_undo")
+  set undodir=~/.undodir/
+  set undofile
+endif
+
 nmap <silent> ,/ :nohlsearch<CR>  " Shortcut to clearing search highlights.
 
 
@@ -384,10 +407,10 @@ nnoremap <C-y> 3<C-y>
 com! FormatJSON %!python -m json.tool
 
 fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
 endfun
 
 

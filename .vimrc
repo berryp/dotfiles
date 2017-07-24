@@ -26,13 +26,13 @@ Plug 'fatih/vim-go'
 Plug 'hashivim/vim-terraform'
 "
 " Files and buffers.
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-", { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/gv.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'mbbill/undotree'
 Plug 'justinmk/vim-gtfo'
+" Plug 'maralla/completor.vim'
 
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
@@ -43,7 +43,8 @@ Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
 
 " Syntax
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'tpope/vim-markdown'
 Plug 'mustache/vim-mustache-handlebars', { 'for': ['hbs', 'handlebars'] }
 Plug 'fatih/vim-go', { 'for': 'go' }
@@ -87,8 +88,7 @@ if filereadable(expand('~/.vimrc_background'))
   source ~/.vimrc_background
 endif
 
-" set guifont=Inconsolata-g\ for\ Powerline:h12
-set guifont=Droid\ Sans\ Mono\ for\ Powerline:h12
+set guifont=Inconsolata-g\ for\ Powerline:h14
 
 set spelllang=en_gb
 " set spellfile=~/.vim/spell/en.utf-8.add
@@ -103,7 +103,7 @@ set background=dark
 
 " Start gracefully when colorscheme is not installed.
 try
-  colorscheme base16-google-dark
+  colorscheme base16-tomorrow-night
 catch
 endtry
 
@@ -127,7 +127,6 @@ set nobackup
 set noswapfile
 
 set laststatus=2                  " Always show the status line.
-
 
 set fileformats=unix,dos,mac
 set backspace=indent,eol,start
@@ -198,34 +197,41 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 let s:tlist_def_go_settings = 'go;g:enum;s:struct;u:union;t:type;' .
       \ 'v:variable;f:function'
 
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
+let g:airline_theme='base16_tomorrow'
 
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
+" if !exists('g:airline_symbols')
+"   let g:airline_symbols = {}
+" endif
 
 " Powerline patched fonts are not rendering the symbols correctly in iTerm2
 " so replace them with regular Unicode characters.
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.crypt = '🔒'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.maxlinenr = '☰'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.notexists = '∄'
-let g:airline_symbols.whitespace = 'Ξ'
+" let g:airline_left_sep = '»'
+" let g:airline_left_sep = '▶'
+" let g:airline_right_sep = '«'
+" let g:airline_right_sep = '◀'
+" let g:airline_symbols.crypt = '🔒'
+" let g:airline_symbols.linenr = '␤'
+" let g:airline_symbols.maxlinenr = '☰'
+" let g:airline_symbols.branch = '⎇'
+" let g:airline_symbols.paste = 'ρ'
+" let g:airline_symbols.notexists = '∄'
+" let g:airline_symbols.whitespace = 'Ξ'
 
 let g:airline#extensions#tabline#enabled = 1
 
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args = '--ignore="E126,E127,E128,W124"'
+" Ale
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'python': ['flake8'],
+\}
 
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+" let g:syntastic_python_checkers = ['pylint']
+" let g:syntastic_python_flake8_args = '--ignore="E126,E127,E128,W124"'
+" "
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 let g:fzf_buffers_jump = 1
 
@@ -309,6 +315,16 @@ au BufEnter *.go set tabstop=4 shiftwidth=4 noexpandtab colorcolumn=
 "  KEY MAPPINGS
 " *****************************************************************************
 
+" Denite
+let g:unite_source_history_yank_enable = 1
+" call denite(['matcher_fuzzy'])
+nnoremap <leader>t :<C-u>Denite -buffer-name=files   file_rec<cr>
+" nnoremap <leader>f :<C-u>Denite -buffer-name=files   file<cr>
+nnoremap <leader>r :<C-u>Denite -buffer-name=mru     file_mru<cr>
+nnoremap <leader>o :<C-u>Denite -buffer-name=outline outline<cr>
+nnoremap <leader>y :<C-u>Denite -buffer-name=yank    history/yank<cr>
+nnoremap <leader>e :<C-u>Denite -buffer-name=buffer  buffer<cr>
+
 " -----------------------------------------------------------------------------
 "  Editor
 " -----------------------------------------------------------------------------
@@ -321,18 +337,11 @@ inoremap ;; <Esc> :
 " Faster access to ex mode.
 nnoremap ; :
 
-" Use Esc to exit terminal insert mode.
-" tnoremap <Esc> <C-\><C-n>
-
-" tnoremap <A-h> <C-\><C-n><C-w>h
-" tnoremap <A-j> <C-\><C-n><C-w>j
-" tnoremap <A-k> <C-\><C-n><C-w>k
-" tnoremap <A-l> <C-\><C-n><C-w>l
-" nnoremap <A-h> <C-w>h
-" nnoremap <A-j> <C-w>j
-" nnoremap <A-k> <C-w>k
-" nnoremap <A-l> <C-w>l
-
+if has('nvim')
+    :tnoremap <Esc> <C-\><C-n>
+    nnoremap <leader>o :below 10sp term://$SHELL<cr>i
+endif
+    "
 " Cycle through buffers
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
@@ -352,9 +361,18 @@ map <leader>gb :Gblame<CR>
 map <leader>gl :Glog<CR>
 map <leader>gp :Gpush<CR>
 
-map <C-a> :FZF<CR>
-map <C-p> :GitFiles<CR>
-map <C-t> :Buffers<CR>
+
+" FZF
+map <leader>fa :Ag!<CR>
+map <leader>ff :Files<CR>
+map <leader>fm :Marks<CR>
+map <leader>fg :GFiles<CR>
+map <leader>fG :GFiles?<CR>
+map <leader>fb :Buffers<CR>
+map <leader>fs :Snippets!<CR>
+map <leader>fc :Commits!<CR>
+map <leader>fC :BCommits!<CR>
+
 
 nmap <silent> <leader>s :set spell!<CR> " Toggle spellcheck.
 
@@ -449,3 +467,36 @@ if has('nvim')
 
 endif
 
+" COMPLETION
+
+function! FzfCompletionPop(findstart, base)
+  let l:res = completor#completefunc(a:findstart, a:base)
+
+  if a:findstart
+    return l:res
+  endif
+
+  let l:words = []
+
+  for word in l:res.words
+    call add(l:words, word['word'] . ' ' . word['menu'])
+  endfor
+
+  let l:result = fzf#run({ 'source': l:words, 'down': '~40%', 'options': printf('--query "%s" +s', a:base) })
+
+  if empty(l:result)
+    return [ a:base ]
+  endif
+
+  return [ split(l:result[0])[0] ]
+endfunction
+
+" set completefunc=FzfCompletionPop
+" set completeopt=menu
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+
+" let g:completor_auto_trigger = 0
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"

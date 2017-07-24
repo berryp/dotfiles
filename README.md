@@ -23,3 +23,9 @@ Additionally for OS X:
 
     $ rake defaults
 
+Nodes
+-----
+
+### iTerm
+
+- Set `Applications in terminal may access clipboard` in General settings.

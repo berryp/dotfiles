@@ -43,6 +43,8 @@
 	hub = !git daemon --base-path=. --export-all --enable=receive-pack --reuseaddr --informative-errors --verbose
   deleted = log --diff-filter=D --summary
 
+  branches = for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+
 [core]
 	excludesfile = /Users/b.phillips/.gitignore_global
 	pager = less -+$LESS -R

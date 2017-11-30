@@ -220,6 +220,7 @@ let g:airline_theme='base16_tomorrow'
 
 let g:airline#extensions#tabline#enabled = 1
 
+let g:airline#extensions#ale#enabled = 1
 " Ale
 let g:ale_linters = {
 \   'javascript': ['eslint'],
@@ -315,16 +316,6 @@ au BufEnter *.go set tabstop=4 shiftwidth=4 noexpandtab colorcolumn=
 "  KEY MAPPINGS
 " *****************************************************************************
 
-" Denite
-let g:unite_source_history_yank_enable = 1
-" call denite(['matcher_fuzzy'])
-nnoremap <leader>t :<C-u>Denite -buffer-name=files   file_rec<cr>
-" nnoremap <leader>f :<C-u>Denite -buffer-name=files   file<cr>
-nnoremap <leader>r :<C-u>Denite -buffer-name=mru     file_mru<cr>
-nnoremap <leader>o :<C-u>Denite -buffer-name=outline outline<cr>
-nnoremap <leader>y :<C-u>Denite -buffer-name=yank    history/yank<cr>
-nnoremap <leader>e :<C-u>Denite -buffer-name=buffer  buffer<cr>
-
 " -----------------------------------------------------------------------------
 "  Editor
 " -----------------------------------------------------------------------------
@@ -345,6 +336,9 @@ endif
 " Cycle through buffers
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
+
+" Allow pasting multiple times.
+xnoremap p pgvy
 
 " -----------------------------------------------------------------------------
 "  Commands

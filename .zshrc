@@ -3,28 +3,27 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="sorin"
 
-plugins=(git aws)
+plugins=(git aws kubectl zsh-iterm-touchbar)
 
 source $ZSH/oh-my-zsh.sh
 
-export EDITOR='vi'
+export EDITOR='nvim'
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 export GOPATH=$HOME/work
 export GO15VENDOREXPERIMENT=1
-
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-  export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python"
-  export WORKON_HOME=~/.envs
-  source /usr/local/bin/virtualenvwrapper.sh
-fi
-
 
 USER_PATH=/usr/local/share:/usr/local/sbin:/usr/local/bin:$HOME/bin:$HOME/.rbenv/shims:/usr/bin:/usr/sbin
 USER_PATH=$USER_PATH:/usr/local/opt/go/libexec/bin
 USER_PATH=$USER_PATH:$GOPATH/bin:$GOROOT/bin:$HOME/work/bin:/usr/local/go/bin
 USER_PATH=$USER_PATH:$HOME/Library/Python/2.7/bin
-export PATH=$USER_PATH:$SYSTEM_PATH
+export PATH=$USER_PATH:$PATH
 
+
+HIST_STAMPS='yyyy-mm-dd'
+export HISTTIMEFORMAT='-i '
 
 # cd aliases.
 alias ..="cd .."
@@ -43,7 +42,14 @@ alias docker-clean='docker rm `docker ps --no-trunc -aq` && docker images -q --f
 alias asjson='python -m json.tool'
 
 alias vi=nvim
-alias mvim=nvim
+alias vim=nvim
+
+alias h=hyper
+alias kc=kubectl
+alias e=code
+alias edit=code
+alias c=code
+alias download=aria2c
 
 export GPG_TTY=`tty`
 
@@ -56,13 +62,10 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 # Set the theme
 base16_tomorrow-night
 
+source $HOME/opt/google-cloud-sdk/path.zsh.inc
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # export FZF_DEFAULT_COMMAND='ag -g ""'
-
-function dock {
-  docker-machine start local
-  eval $(docker-machine env local)
-}
 
 function awscreds {
   export AWS_ACCESS_KEY_ID="`aws configure get aws_access_key_id --profile $AWS_PROFILE`"
@@ -287,6 +290,4 @@ cdf() {
  }
 
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+eval "$(pyenv init -)"

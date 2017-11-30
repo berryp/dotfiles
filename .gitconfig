@@ -48,7 +48,8 @@
 [core]
 	excludesfile = /Users/b.phillips/.gitignore_global
 	pager = less -+$LESS -R
-	editor = vim
+	editor = nvim
+	quotepath = false
 
 [push]
   # Only push branches that have been set up to track a remote branch.

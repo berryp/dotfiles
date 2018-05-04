@@ -21,13 +21,13 @@ HIST_STAMPS='yyyy-mm-dd'
 export HISTTIMEFORMAT='-i '
 
 # cd aliases.
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ......="cd ../../../../.."
+# alias ..="cd .."
+# alias ...="cd ../.."
+# alias ....="cd ../../.."
+# alias .....="cd ../../../.."
+# alias ......="cd ../../../../.."
 
-alias updatedb='sudo /usr/libexec/locate.updatedb'
+# alias updatedb='sudo /usr/libexec/locate.updatedb'
 
 alias gist='gist -c -p -s'
 alias grep='grep --exclude="*.egg/" --exclude="*.min.js"'
@@ -40,18 +40,15 @@ alias server='python3 -m http.server'
 alias vi=nvim
 alias vim=nvim
 
-alias h=hyper
-alias kc=kubectl
-alias kx=kubectx
 alias e=code
 alias edit=code
 alias c=code
 alias download=aria2c
 
-alias venv="pyenv virtualenv ${PWD##*/}"
-alias activate="pyenv activate ${PWD##*/}"
+# alias venv="pyenv virtualenv ${PWD##*/}"
+# alias activate="pyenv activate ${PWD##*/}"
 
-export GPG_TTY=`tty`
+# export GPG_TTY=`tty`
 
 # BASE16_SHELL=$HOME/.config/base16-shell/
 # [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
@@ -63,16 +60,11 @@ export GPG_TTY=`tty`
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 autoload -U colors; colors
-source $HOME/.zprezto-contrib/zsh-kubectl-prompt/kubectl.zsh
-source <(kubectl completion zsh)
-
+source $HOME/.zsh-kubectl-prompt/kubectl.zsh
 RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
-
-# export PYENV_ROOT=/usr/local/opt/pyenv
-eval "$(pyenv init -)"
-
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-eval "$(pyenv init -)"
 
+if [ -f $HOME/google-cloud-sdk/path.zsh.inc ]; then source $HOME/google-cloud-sdk/path.zsh.inc; fi
+if [ -f $HOME/google-cloud-sdk/completion.zsh.inc ]; then source $HOME/google-cloud-sdk/completion.zsh.inc; fi

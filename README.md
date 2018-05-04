@@ -1,31 +1,45 @@
-dotfiles
-========
+# dotfiles
 
-Prerequisites
-------------
+## zsh
 
-vcprompt (c version) - https://github.com/ericmeyer/vcprompt
-ctags
+### Prezto
 
-## Vim
+[Prezto on Github](https://github.com/sorin-ionescu/prezto)
 
-Clone vundle plugin - https://github.com/ericmeyer/vcprompt
-Run `:BundleInstall` from vim.
+```shell
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
-Installation
-------------
+setopt EXTENDED_GLOB
 
-    $ git clone git@github.com:berryp/dotfiles.git $HOME/.dotfiles
-    $ cd $HOME/.dotfiles
-    $ rake
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
 
-Additionally for OS X:
+rm $HOME/.zpreztorc
+rm $HOME/.zshrc
 
-    $ rake defaults
+for rcfile in "${ZDOTDIR:-$HOME}"/.dotfiles/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+```
 
-Nodes
------
+### Kubernetes prompt
 
-### iTerm
+[ZSH Kubernetes Prompt on Github](https://github.com/superbrothers/zsh-kubectl-prompt)
 
-- Set `Applications in terminal may access clipboard` in General settings.
+```shell
+git clone https://github.com/superbrothers/zsh-kubectl-prompt.git ~/.zsh-kubectl-prompt
+```
+
+### gcloud
+
+Run the [interactive installer](https://cloud.google.com/sdk/downloads#interactive) setting  
+the installation directory to `~/google-cloud-sdk` and choose NOT to update shell.
+
+
+Configure environment and install components:
+
+```
+gcloud init
+gcloud components install kubectl pubsub-emulator container-builder-local docker-credential-gcr beta
+```

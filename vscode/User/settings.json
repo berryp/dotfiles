@@ -1,4 +1,38 @@
 {
     "editor.fontSize": 14,
-    "workbench.iconTheme": "vscode-icons"
+    "workbench.iconTheme": "vscode-icons",
+    "vsicons.dontShowNewVersionMessage": true,
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
+        "suppressShowKeyBindingsNotice": true,
+        "suppressUpdateNotice": true,
+        "suppressWelcomeNotice": false
+    },
+    "python.linting.flake8Path": "~/.pyenv/shims/flake8",
+    "python.linting.flake8Enabled": true,
+    "python.linting.mypyPath": "~/.pyenv/shims/mypy",
+    "python.formatting.yapfPath": "~/.pyenv/shims/yapf",
+    "workbench.startupEditor": "newUntitledFile",
+    "python.linting.flake8Args": [
+        "--ignore=E128,E402"
+    ],
+    "python.linting.pylintEnabled": false,
+    "python.formatting.provider": "yapf",
+    "editor.formatOnSave": false,
+    "python.formatting.yapfArgs": [
+        "--style=pep8"
+    ],
+    "files.associations": {
+        "Dockerfile.*": "dockerfile",
+        "zshrc": "shellscript",
+        "zpreztorc": "shellscript",
+        "gitconfig": "properties"
+    },
+    "gitlens.keymap": "alternate"
 }

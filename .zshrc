@@ -51,6 +51,9 @@ alias edit=code
 alias c=code
 alias download=aria2c
 
+alias venv="pyenv virtualenv ${PWD##*/}"
+alias activate="pyenv activate ${PWD##*/}"
+
 export GPG_TTY=`tty`
 
 # BASE16_SHELL=$HOME/.config/base16-shell/
@@ -64,8 +67,13 @@ source $HOME/opt/google-cloud-sdk/path.zsh.inc
 
 autoload -U colors; colors
 source $HOME/.zprezto-contrib/zsh-kubectl-prompt/kubectl.zsh
+source <(kubectl completion zsh)
+
 RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
 
 # export PYENV_ROOT=/usr/local/opt/pyenv
 eval "$(pyenv init -)"
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"

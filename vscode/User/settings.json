@@ -23,16 +23,36 @@
         "--ignore=E128,E402"
     ],
     "python.linting.pylintEnabled": false,
-    "python.formatting.provider": "yapf",
-    "editor.formatOnSave": false,
+    "python.formatting.provider": "black",
+    "editor.formatOnSave": true,
     "python.formatting.yapfArgs": [
         "--style=pep8"
     ],
     "files.associations": {
         "Dockerfile.*": "dockerfile",
+        "Dockerfile-*": "dockerfile",
         "zshrc": "shellscript",
         "zpreztorc": "shellscript",
         "gitconfig": "properties"
     },
-    "gitlens.keymap": "alternate"
+    "gitlens.keymap": "alternate",
+    "nasc-touchbar.toggleSidebar": true,
+    "nasc-touchbar.toggleWhiteSpace": true,
+    "nasc-touchbar.selectNext": false,
+    "editor.renderWhitespace": "none",
+    "gitlens.historyExplorer.enabled": true,
+    "editor.minimap.enabled": false,
+    "telemetry.enableCrashReporter": false,
+    "gitlens.gitExplorer.files.layout": "auto",
+    "git.autofetch": true,
+    "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": false,
+    "gitlens.views.repositories.files.layout": "auto",
+    "gitlens.views.fileHistory.enabled": true,
+    "gitlens.views.lineHistory.enabled": true,
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    }
 }

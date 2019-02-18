@@ -15,6 +15,9 @@ fi
 zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
 zstyle ':prezto:module:python' skip-virtualenvwrapper-init 'on'
 
+export LC_ALL='en_US.UTF-8'
+export LANG='en_US.UTF-8'
+
 export EDITOR='vim'
 
 HIST_STAMPS='yyyy-mm-dd'
@@ -37,13 +40,14 @@ alias docker-clean='docker rm `docker ps --no-trunc -aq` && docker images -q --f
 alias asjson='python -m json.tool'
 alias server='python3 -m http.server'
 
-alias vi=nvim
-alias vim=nvim
+alias vi=vim
 
 alias e=code
 alias edit=code
 alias c=code
 alias download=aria2c
+
+alias gssh='gcloud compute ssh'
 
 # alias venv="pyenv virtualenv ${PWD##*/}"
 # alias activate="pyenv activate ${PWD##*/}"
@@ -57,6 +61,9 @@ alias download=aria2c
 
 # source $HOME/opt/google-cloud-sdk/path.zsh.inc
 
+export GOPATH=$HOME/go
+export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 autoload -U colors; colors
@@ -64,7 +71,7 @@ source $HOME/.zsh-kubectl-prompt/kubectl.zsh
 RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
 
 if [ -f $HOME/google-cloud-sdk/path.zsh.inc ]; then source $HOME/google-cloud-sdk/path.zsh.inc; fi
 if [ -f $HOME/google-cloud-sdk/completion.zsh.inc ]; then source $HOME/google-cloud-sdk/completion.zsh.inc; fi

@@ -103,7 +103,7 @@ set background=dark
 
 " Start gracefully when colorscheme is not installed.
 try
-  colorscheme base16-tomorrow-night
+  colorscheme base16-default-dark
 catch
 endtry
 
@@ -200,23 +200,23 @@ let s:tlist_def_go_settings = 'go;g:enum;s:struct;u:union;t:type;' .
 let g:airline_powerline_fonts = 1
 let g:airline_theme='base16_tomorrow'
 
-" if !exists('g:airline_symbols')
-"   let g:airline_symbols = {}
-" endif
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
 
 " Powerline patched fonts are not rendering the symbols correctly in iTerm2
 " so replace them with regular Unicode characters.
-" let g:airline_left_sep = '»'
-" let g:airline_left_sep = '▶'
-" let g:airline_right_sep = '«'
-" let g:airline_right_sep = '◀'
-" let g:airline_symbols.crypt = '🔒'
-" let g:airline_symbols.linenr = '␤'
-" let g:airline_symbols.maxlinenr = '☰'
-" let g:airline_symbols.branch = '⎇'
-" let g:airline_symbols.paste = 'ρ'
-" let g:airline_symbols.notexists = '∄'
-" let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.maxlinenr = '☰'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.whitespace = 'Ξ'
 
 let g:airline#extensions#tabline#enabled = 1
 

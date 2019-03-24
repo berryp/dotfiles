@@ -40,14 +40,10 @@ alias docker-clean='docker rm `docker ps --no-trunc -aq` && docker images -q --f
 alias asjson='python -m json.tool'
 alias server='python3 -m http.server'
 
-alias vi=vim
-
 alias e=code
 alias edit=code
 alias c=code
 alias download=aria2c
-
-alias gssh='gcloud compute ssh'
 
 # alias venv="pyenv virtualenv ${PWD##*/}"
 # alias activate="pyenv activate ${PWD##*/}"
@@ -59,7 +55,8 @@ alias gssh='gcloud compute ssh'
 # # Set the theme
 # base16_tomorrow-night
 
-# source $HOME/opt/google-cloud-sdk/path.zsh.inc
+source /opt/google-cloud-sdk/path.zsh.inc
+alias gssh='gcloud compute ssh'
 
 export GOPATH=$HOME/go
 export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
@@ -69,9 +66,24 @@ export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
 autoload -U colors; colors
 source $HOME/.zsh-kubectl-prompt/kubectl.zsh
 RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
+# export PATH=$HOME/.gloo/bin:$PATH
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 if [ -f $HOME/google-cloud-sdk/path.zsh.inc ]; then source $HOME/google-cloud-sdk/path.zsh.inc; fi
 if [ -f $HOME/google-cloud-sdk/completion.zsh.inc ]; then source $HOME/google-cloud-sdk/completion.zsh.inc; fi
+
+
+if [ -x /usr/local/bin/jenv ]; then
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
+  export JAVA_HOME=dsds$(jenv javahome);
+fi
+
+# fpath=(/usr/local/share/zsh-completions $fpath)
+# . /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# . /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# . /usr/local/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
+

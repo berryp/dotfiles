@@ -44,6 +44,8 @@ zstyle ':prezto:load' pmodule \
   'tmux' \
   'terminal' \
   'kubernetes'
+  # 'autosuggestions' \
+  # 'syntax-highlighting'
 
 #
 # Autosuggestions

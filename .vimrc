@@ -14,11 +14,13 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 " General.
+Plug 'tomasiser/vim-code-dark'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
+Plug 'itchyny/lightline.vim'
 " Plug 'bling/vim-bufferline'
 
 Plug 'chriskempson/base16-vim'
@@ -26,7 +28,7 @@ Plug 'fatih/vim-go'
 Plug 'hashivim/vim-terraform'
 "
 " Files and buffers.
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/gv.vim'
 Plug 'junegunn/vim-peekaboo'
@@ -41,6 +43,8 @@ Plug 'suan/vim-instant-markdown', { 'for': 'md' }
 " Movement and editing.
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
+Plug 'terryma/vim-multiple-cursors'
+" Plug 'valloric/youcompleteme'
 
 " Syntax
 " Plug 'scrooloose/syntastic'
@@ -81,14 +85,20 @@ set wildignore+=*.egg-info,.*,*.pyc,*.tar,*.gz,*.log,*.fla,*.swf
 set wildignore+=env,node_modules,bower_components,target,build
 set wildignore+=Godeps
 
-" set t_Co=256                      " Use 256 colors where supported.
-let base16colorspace=256
-if filereadable(expand('~/.vimrc_background'))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
 
-set guifont=Inconsolata-g\ for\ Powerline:h14
+set t_Co=256
+set t_ut=
+colorscheme codedark
+let g:airline_theme = 'codedark'
+
+
+" set t_Co=256                      " Use 256 colors where supported.
+" let base16colorspace=256
+" if filereadable(expand('~/.vimrc_background'))
+"   let base16colorspace=256
+"   source ~/.vimrc_background
+" endif
+
 
 set spelllang=en_gb
 " set spellfile=~/.vim/spell/en.utf-8.add
@@ -99,13 +109,7 @@ set clipboard+=unnamed
 "  Editor
 " -----------------------------------------------------------------------------
 
-set background=dark
-
-" Start gracefully when colorscheme is not installed.
-try
-  colorscheme base16-default-dark
-catch
-endtry
+set guifont=Inconsolata:h16
 
 set number                        " Show line numbers.
 set ruler
@@ -197,30 +201,29 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 let s:tlist_def_go_settings = 'go;g:enum;s:struct;u:union;t:type;' .
       \ 'v:variable;f:function'
 
-let g:airline_powerline_fonts = 1
-let g:airline_theme='base16_tomorrow'
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
+" let g:airline_powerline_fonts = 1
+"
+" if !exists('g:airline_symbols')
+"   let g:airline_symbols = {}
+" endif
 
 " Powerline patched fonts are not rendering the symbols correctly in iTerm2
 " so replace them with regular Unicode characters.
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.crypt = '🔒'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.maxlinenr = '☰'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.notexists = '∄'
-let g:airline_symbols.whitespace = 'Ξ'
+" let g:airline_left_sep = '»'
+" let g:airline_left_sep = '▶'
+" let g:airline_right_sep = '«'
+" let g:airline_right_sep = '◀'
+" let g:airline_symbols.crypt = '🔒'
+" let g:airline_symbols.linenr = '␤'
+" let g:airline_symbols.maxlinenr = '☰'
+" let g:airline_symbols.branch = '⎇'
+" let g:airline_symbols.paste = 'ρ'
+" let g:airline_symbols.notexists = '∄'
+" let g:airline_symbols.whitespace = 'Ξ'
 
-let g:airline#extensions#tabline#enabled = 1
-
-let g:airline#extensions#ale#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
+"
+" let g:airline#extensions#ale#enabled = 1
 " Ale
 let g:ale_linters = {
 \   'javascript': ['eslint'],

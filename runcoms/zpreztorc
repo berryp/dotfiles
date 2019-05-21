@@ -38,13 +38,11 @@ zstyle ':prezto:load' pmodule \
   'git' \
   'completion' \
   'contrib-prompt' \
-  'prompt' \
-  'docker' \
-  'osx' \
-  'python' \
-  'tmux' \
-  'terminal' \
-  'kubernetes'
+  'prompt'
+  # 'docker' \
+  # 'osx' \
+  # 'tmux'
+  # 'kubernetes'
   # 'autosuggestions' \
   # 'syntax-highlighting'
 
@@ -138,52 +136,18 @@ zstyle ':prezto:module:prompt' pwd-length 'long'
 # zstyle ':prezto:module:prompt' show-return-val 'yes'
 
 #
-# Ruby
-#
-
-# Auto switch the Ruby version on directory change.
-# zstyle ':prezto:module:ruby:chruby' auto-switch 'yes'
-
-#
-# Python
-#
-
-# Auto switch the Python virtualenv on directory change.
-# zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
-
-# Automatically initialize virtualenvwrapper if pre-requisites are met.
-zstyle ':prezto:module:python:virtualenv' initialize 'no'
-
-#
-# Screen
-#
-
-# Auto start a session when Zsh is launched in a local terminal.
-# zstyle ':prezto:module:screen:auto-start' local 'yes'
-
-# Auto start a session when Zsh is launched in a SSH connection.
-# zstyle ':prezto:module:screen:auto-start' remote 'yes'
-
-#
-# SSH
-#
-
-# Set the SSH identities to load into the agent.
-zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'spiderlock-dev'
-
-#
 # Syntax Highlighting
 #
 
 # Set syntax highlighters.
 # By default, only the main highlighter is enabled.
-zstyle ':prezto:module:syntax-highlighting' highlighters \
-  'main' \
-  'brackets' \
-  'pattern' \
-  'line' \
-  'cursor' \
-  'root'
+# zstyle ':prezto:module:syntax-highlighting' highlighters \
+#   'main' \
+#   'brackets' \
+#   'pattern' \
+#   'line' \
+#   'cursor' \
+#   'root'
 #
 # Set syntax highlighting styles.
 # zstyle ':prezto:module:syntax-highlighting' styles \

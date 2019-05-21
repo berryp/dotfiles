@@ -12,9 +12,6 @@ fi
 
 # Customize to your needs...
 
-zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
-zstyle ':prezto:module:python' skip-virtualenvwrapper-init 'on'
-
 export EDITOR='vim'
 
 HIST_STAMPS='yyyy-mm-dd'

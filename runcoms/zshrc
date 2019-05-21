@@ -12,8 +12,6 @@ fi
 
 # Customize to your needs...
 
-zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
-zstyle ':prezto:module:python' skip-virtualenvwrapper-init 'on'
 
 export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'
@@ -44,16 +42,7 @@ alias e=code
 alias edit=code
 alias c=code
 alias download=aria2c
-
-# alias venv="pyenv virtualenv ${PWD##*/}"
-# alias activate="pyenv activate ${PWD##*/}"
-
-# export GPG_TTY=`tty`
-
-# BASE16_SHELL=$HOME/.config/base16-shell/
-# [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-# # Set the theme
-# base16_tomorrow-night
+alias tf=terraform
 
 source /opt/google-cloud-sdk/path.zsh.inc
 alias gssh='gcloud compute ssh'
@@ -62,28 +51,44 @@ export GOPATH=$HOME/go
 export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='ag --nocolor --ignore node_modules -g ""'
 
 autoload -U colors; colors
-source $HOME/.zsh-kubectl-prompt/kubectl.zsh
-RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
+# source $HOME/.zsh-kubectl-prompt/kubectl.zsh
+# RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
 # export PATH=$HOME/.gloo/bin:$PATH
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-if [ -f $HOME/google-cloud-sdk/path.zsh.inc ]; then source $HOME/google-cloud-sdk/path.zsh.inc; fi
-if [ -f $HOME/google-cloud-sdk/completion.zsh.inc ]; then source $HOME/google-cloud-sdk/completion.zsh.inc; fi
-
+# Google Cloud SDK
+if [ -f $HOME/google-cloud-sdk/path.zsh.inc ]; then
+  source $HOME/google-cloud-sdk/path.zsh.inc
+fi
+if [ -f $HOME/google-cloud-sdk/completion.zsh.inc ]; then
+  source $HOME/google-cloud-sdk/completion.zsh.inc
+fi
 
 if [ -x /usr/local/bin/jenv ]; then
   export PATH="$HOME/.jenv/bin:$PATH"
   eval "$(jenv init -)"
-  export JAVA_HOME=dsds$(jenv javahome);
+  export JAVA_HOME=$(jenv javahome);
 fi
 
-# fpath=(/usr/local/share/zsh-completions $fpath)
-# . /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# . /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# . /usr/local/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
+# For compilers to find zlib you may need to set:
+export LDFLAGS="${LDFLAGS} -L/usr/local/opt/zlib/lib"
+export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/zlib/include"
+
+# For pkg-config to find zlib you may need to set:
+export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/zlib/lib/pkgconfig"
+
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"

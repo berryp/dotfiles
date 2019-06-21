@@ -37,14 +37,8 @@ zstyle ':prezto:load' pmodule \
   'utility' \
   'git' \
   'completion' \
-  'prompt'
-  # 'contrib-prompt' \
-  # 'docker' \
-  # 'osx' \
-  # 'tmux'
-  # 'kubernetes'
-  # 'autosuggestions' \
-  # 'syntax-highlighting'
+  'prompt' \
+  'kubernetes'
 
 #
 # Autosuggestions
@@ -52,8 +46,6 @@ zstyle ':prezto:load' pmodule \
 
 # Set the query found color.
 # zstyle ':prezto:module:autosuggestions:color' found ''
-
-zstyle ':prezto:module:prompt' theme 'spaceship'
 
 #
 # Completions

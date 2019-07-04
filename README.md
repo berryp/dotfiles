@@ -33,7 +33,7 @@ git clone https://github.com/superbrothers/zsh-kubectl-prompt.git ~/.zsh-kubectl
 
 ### gcloud
 
-Run the [interactive installer](https://cloud.google.com/sdk/downloads#interactive) setting  
+Run the [interactive installer](https://cloud.google.com/sdk/downloads#interactive) setting
 the installation directory to `~/google-cloud-sdk` and choose NOT to update shell.
 
 
@@ -43,3 +43,11 @@ Configure environment and install components:
 gcloud init
 gcloud components install kubectl pubsub-emulator container-builder-local docker-credential-gcr beta
 ```
+
+### Octave
+
+```shell
+brew tap brewsci/base
+brew install octave
+````
+

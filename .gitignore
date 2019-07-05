@@ -8,3 +8,4 @@ Package\ Control.sublime-settings
 tmp/
 .vagrant/
 vscode/User/workspaceStorage/
+octave-workspace

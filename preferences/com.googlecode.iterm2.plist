@@ -226,16 +226,12 @@
 			<true/>
 			<key>Background Color</key>
 			<dict>
-				<key>Alpha Component</key>
-				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.17647058823529413</real>
-				<key>Color Space</key>
-				<string>sRGB</string>
+				<real>0.0</real>
 				<key>Green Component</key>
-				<real>0.1803921568627451</real>
+				<real>0.0</real>
 				<key>Red Component</key>
-				<real>0.17254901960784313</real>
+				<real>0.0</real>
 			</dict>
 			<key>Background Image Location</key>
 			<string></string>
@@ -273,6 +269,8 @@
 			<integer>80</integer>
 			<key>Command</key>
 			<string>/usr/local/bin/zsh</string>
+			<key>Cursor Boost</key>
+			<real>0.0</real>
 			<key>Cursor Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -680,21 +678,10 @@
 			<string></string>
 			<key>Silence Bell</key>
 			<false/>
+			<key>Smart Cursor Color</key>
+			<false/>
 			<key>Sync Title</key>
 			<false/>
-			<key>Tab Color</key>
-			<dict>
-				<key>Alpha Component</key>
-				<real>1</real>
-				<key>Blue Component</key>
-				<real>0.17647058823529413</real>
-				<key>Color Space</key>
-				<string>sRGB</string>
-				<key>Green Component</key>
-				<real>0.17647058823529413</real>
-				<key>Red Component</key>
-				<real>0.1803921568627451</real>
-			</dict>
 			<key>Tags</key>
 			<array/>
 			<key>Terminal Type</key>
@@ -707,6 +694,8 @@
 			<true/>
 			<key>Use Bright Bold</key>
 			<true/>
+			<key>Use Cursor Guide</key>
+			<false/>
 			<key>Use Italic Font</key>
 			<true/>
 			<key>Use Non-ASCII Font</key>
@@ -728,6 +717,7 @@
 	<key>NoSyncAllAppVersions</key>
 	<array>
 		<string>3.3.0beta12</string>
+		<string>3.3.0beta10</string>
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
@@ -739,11 +729,12 @@
 		<string>{{0, 0}, {1680, 1050}}</string>
 		<key>topLeft</key>
 		<string>{603, 850}</string>
+		<string>{82, 874}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>2F104CC2-DD2D-414C-AB62-E9000A6A5FD9</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>5</integer>
+	<integer>12</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -1447,7 +1438,12 @@
 	<true/>
 	<key>SULastCheckTime</key>
 	<date>2019-07-05T07:30:41Z</date>
+	<date>2019-07-04T05:59:25Z</date>
 	<key>SUSendProfileInfo</key>
+	<false/>
+	<key>SUUpdateRelaunchingMarker</key>
+	<false/>
+	<key>ShowFullScreenTabBar</key>
 	<false/>
 	<key>SmartPlacement</key>
 	<true/>

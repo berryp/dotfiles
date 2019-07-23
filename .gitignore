@@ -9,3 +9,5 @@ tmp/
 .vagrant/
 vscode/User/workspaceStorage/
 octave-workspace
+
+preferences/Alfred.alfredpreferences/remote/

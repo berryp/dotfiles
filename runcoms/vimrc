@@ -14,6 +14,9 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'chriskempson/base16-vim'
+Plug 'berryp/matlab.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'python/black'
 call plug#end()
 
 set ttimeout                                       "time waited for key press(es) to complete...
@@ -153,11 +156,21 @@ let g:ale_linters = {
 \   'vue': ['eslint']
 \}
 let g:ale_fixers = {
+\    'python': ['black'],
 \    'javascript': ['eslint'],
 \    'vue': ['eslint'],
 \    'scss': ['prettier']
 \}
 let g:ale_fix_on_save = 1
+
+" coc.vim
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
 
 " *****************************************************************************
 "  REFERENCE MATERIAL

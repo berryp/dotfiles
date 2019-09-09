@@ -1,9 +1,12 @@
 " Note: Heavily inspired by https://github.com/aonemd/aaku/blob/master/vim/vimrc
 
+let g:python_host_prog = '/Users/berryp/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/berryp/.pyenv/versions/neovim3/bin/python'
+
 call plug#begin('~/.vim/plugins')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
+" Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
@@ -15,7 +18,7 @@ Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'chriskempson/base16-vim'
 Plug 'berryp/matlab.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'python/black'
 call plug#end()
 
@@ -680,3 +683,4 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 "" previous-history instead of down and up. If you don't like the change,
 "" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 "let g:fzf_history_dir = '~/.local/share/fzf-history'
+

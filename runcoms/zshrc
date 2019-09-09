@@ -12,7 +12,6 @@ fi
 
 # Customize to your needs...
 
-
 export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'
 
@@ -21,73 +20,70 @@ export EDITOR='vim'
 HIST_STAMPS='yyyy-mm-dd'
 export HISTTIMEFORMAT='-i '
 
-# cd aliases.
-# alias ..="cd .."
-# alias ...="cd ../.."
-# alias ....="cd ../../.."
-# alias .....="cd ../../../.."
-# alias ......="cd ../../../../.."
-
-# alias updatedb='sudo /usr/libexec/locate.updatedb'
-
 alias gist='gist -c -p -s'
 alias grep='grep --exclude="*.egg/" --exclude="*.min.js"'
 alias agrep="grep --color=auto -nr -A 2 -B 2"
 
 alias docker-clean='docker rm `docker ps --no-trunc -aq` && docker images -q --filter "dangling=true" | xargs docker rmi'
-alias asjson='python -m json.tool'
+alias asjson='python3 -m json.tool'
 alias server='python3 -m http.server'
 
-alias e=code
-alias edit=code
-alias c=code
-alias download=aria2c
-alias tf=terraform
-alias kc=kubectl
-alias kx=kubectx
-alias kn=kubens
-
-source /opt/google-cloud-sdk/path.zsh.inc
 alias gssh='gcloud compute ssh'
 
+export PATH=$HOME/bin:$PATH
 export GOPATH=$HOME/go
 export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='ag --nocolor --ignore node_modules -g ""'
+# FZF
+if [ -f ~/.fzf.zsh ]; then
+  source ~/.fzf.zsh
+  if hash ag 2>/dev/null; then
+    export FZF_DEFAULT_COMMAND='ag --nocolor --ignore node_modules -g ""'
+  fi
+fi
 
-autoload -U colors; colors
-source $HOME/.zsh-kubectl-prompt/kubectl.zsh
-RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
-# export PATH=$HOME/.gloo/bin:$PATH
-
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Kubernetes prompt
+if [ -f $HOME/.zsh-kubectl-prompt/kubectl.zsh ]; then
+  autoload -U colors; colors
+  source $HOME/.zsh-kubectl-prompt/kubectl.zsh
+  RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
+fi
 
 # Google Cloud SDK
-if [ -f $HOME/google-cloud-sdk/path.zsh.inc ]; then
-  source $HOME/google-cloud-sdk/path.zsh.inc
-fi
-if [ -f $HOME/google-cloud-sdk/completion.zsh.inc ]; then
-  source $HOME/google-cloud-sdk/completion.zsh.inc
-fi
+if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
 
-if [ -x /usr/local/bin/jenv ]; then
-  export PATH="$HOME/.jenv/bin:$PATH"
-  eval "$(jenv init -)"
-  export JAVA_HOME=$(jenv javahome);
-fi
+# kubectl
+if hash kubectl 2>/dev/null; then alias kc=kubectl; fi
+if hash kubectx 2>/dev/null; then alias kc=kubectx; fi
+if hash kubens 2>/dev/null; then alias kc=kubens; fi
 
-if command -v pyenv 1>/dev/null 2>&1; then
+# jenv
+# if [ -x /usr/local/bin/jenv ]; then
+#   export PATH="$HOME/.jenv/bin:$PATH"
+#   eval "$(jenv init -)"
+#   export JAVA_HOME=$(jenv javahome);
+# fi
+
+# pyenv
+if [ -f $HOME/.pyenv/bin/pyenv ]; then
+  export PATH="$HOME/.pyenv/bin:$PATH"
   eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
 fi
 
-# For compilers to find zlib you may need to set:
+# Android SDK
+if [ -d $HOME/Library/Android/sdk ]; then
+  export PATH=$HOME/Library/Android/sdk/tools/bin:$PATH
+  export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+fi
+
+
+# For compilers to find zlib:
 export LDFLAGS="${LDFLAGS} -L/usr/local/opt/zlib/lib"
 export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/zlib/include"
 
-# For pkg-config to find zlib you may need to set:
+# For pkg-config to find zlib:
 export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/zlib/lib/pkgconfig"
 
 # Base16 Shell
@@ -96,9 +92,6 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
+export PATH="$PATH:$HOME/flutter/bin"
 

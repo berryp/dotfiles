@@ -47,18 +47,27 @@ alias kc=kubectl
 alias kx=kubectx
 alias kn=kubens
 
-source /opt/google-cloud-sdk/path.zsh.inc
 alias gssh='gcloud compute ssh'
 
 export GOPATH=$HOME/go
 export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
 
+if [ -d $HOME/flutter ]; then
+  export PATH=$HOME/flutter/bin:$HOME/.pub-cache/bin:$HOME/flutter/bin/cache/dart-sdk/bin:$PATH
+
+fi
+
+[ -d $HOME/android-tools ] && export PATH=$HOME/android-tools/bin:$PATH
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='ag --nocolor --ignore node_modules -g ""'
 
 autoload -U colors; colors
-source $HOME/.zsh-kubectl-prompt/kubectl.zsh
-RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
+
+if [ -f ~/.kube/config ]; then
+  source $HOME/.zsh-kubectl-prompt/kubectl.zsh
+  RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
+fi
 # export PATH=$HOME/.gloo/bin:$PATH
 
 # export NVM_DIR="$HOME/.nvm"
@@ -73,11 +82,11 @@ if [ -f $HOME/google-cloud-sdk/completion.zsh.inc ]; then
   source $HOME/google-cloud-sdk/completion.zsh.inc
 fi
 
-if [ -x /usr/local/bin/jenv ]; then
-  export PATH="$HOME/.jenv/bin:$PATH"
-  eval "$(jenv init -)"
-  export JAVA_HOME=$(jenv javahome);
-fi
+# if [ -x /usr/local/bin/jenv ]; then
+#   export PATH="$HOME/.jenv/bin:$PATH"
+#   eval "$(jenv init -)"
+#   export JAVA_HOME=$(jenv javahome);
+# fi
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
@@ -97,8 +106,11 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-cloud-sdk/completion.zsh.inc'; fi
 
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

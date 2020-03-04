@@ -1,7 +1,7 @@
 [user]
 	name = Berry Phillips
 	email = berryphillips@gmail.com
-	signingkey = 9F18100F1742A146
+	signingkey = 5E44A24F60B9429667063CD0AE1CD90FDB5BC8B1
 
 [github]
 	user = berryp
@@ -100,21 +100,6 @@
 [credential]
   helper = osxkeychain
 
-[merge]
-	tool = gvimdiff
-  conflictstyle = diff3
-
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree-Beta.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-[diff]
-	tool = vimdiff
-	guitool = gvimdiff
-[difftool]
-	prompt = false
 [github]
 	user = berryp
 [rebase]
@@ -139,3 +124,19 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+[gpg]
+	program = /usr/local/MacGPG2/bin/gpg2
+[commit]
+	gpgsign = false
+[tag]
+	forceSignAnnotated = true
+
+
+[merge]
+	tool = opendiff
+[mergetool "vscode"]
+    cmd = code --wait $MERGED
+[diff]
+    tool = vscode
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE

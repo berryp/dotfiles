@@ -1,7 +1,9 @@
 [user]
 	name = Berry Phillips
 	email = berryphillips@gmail.com
-	signingkey = 5E44A24F60B9429667063CD0AE1CD90FDB5BC8B1
+
+[includeIf "gitdir:~/work/**"]
+  path = ~/work/.gitconfig
 
 [github]
 	user = berryp
@@ -49,7 +51,7 @@
 [core]
 	excludesfile = /Users/berryp/.gitignore_global
 	pager = less -+$LESS -R
-	editor = nvim
+	editor = vim
 	quotepath = false
 	autocrlf = input
 

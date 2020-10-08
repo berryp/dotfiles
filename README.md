@@ -51,3 +51,11 @@ brew tap brewsci/base
 brew install octave
 ````
 
+### macOS
+
+#### VCode
+
+Disable macOS press and hold in VSCode to support `hjkl` repeats.
+```
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+```
